@@ -9,10 +9,10 @@
         <title>Mangeons le mulet !</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="<spring:url value='/lib/css/bootstrap.css'>" rel="stylesheet">
+        <link href="<spring:url value='/lib/css/bootstrap.css'/>" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="<spring:url value='/css/main-template.css'>" rel="stylesheet">
+        <link href="<spring:url value='/css/main-template.css'/>" rel="stylesheet">
     </head>
     <body>
         <!-- Navigation -->
@@ -57,7 +57,7 @@
         </footer>
 
         <!-- Bootstrap core JavaScript -->
-        <script src="<spring:url value='/lib/js/jquery.js'>"></script>
-        <script src="<spring:url value='/lib/js/bootstrap.bundle.js'>"></script>
+        <script src="<spring:url value='/lib/js/jquery.js'/>"></script>
+        <script src="<spring:url value='/lib/js/bootstrap.bundle.js'/>"></script>
     </body>
 </html>
