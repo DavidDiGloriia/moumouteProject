@@ -12,6 +12,6 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model)
     {
-        return "home";
+        return "integrated:home";
     }
 }
