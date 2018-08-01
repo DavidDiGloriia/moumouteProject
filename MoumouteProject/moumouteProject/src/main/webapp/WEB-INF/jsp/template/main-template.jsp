@@ -42,11 +42,11 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Page Content -->
+        
         <div class="container">
             <tiles:insertAttribute name = "main-content" />
         </div>
+
 
 
         <!-- Footer -->
