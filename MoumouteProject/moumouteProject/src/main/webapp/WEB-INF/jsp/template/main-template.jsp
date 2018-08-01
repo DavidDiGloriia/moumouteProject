@@ -13,8 +13,16 @@
 
         <!-- Custom styles for this template -->
         <link href="<spring:url value='/css/main-template.css'/>" rel="stylesheet">
+
+        <spring:url var="langFr" value="">
+            <spring:param name="lang" value="fr"/>
+        </spring:url>
+        <spring:url var="langEn" value="">
+            <spring:param name="lang" value="en"/>
+        </spring:url>
     </head>
     <body>
+
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
@@ -38,11 +46,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        <li>
+                            <a href="${langFr}"><p>Français</p></a>
+                        </li>
+                        <li>
+                            <a href="${langEn}">Anglais</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        
+
         <div class="container">
             <tiles:insertAttribute name = "main-content" />
         </div>

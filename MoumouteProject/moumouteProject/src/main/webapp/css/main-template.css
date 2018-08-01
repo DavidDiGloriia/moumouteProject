@@ -7,3 +7,7 @@ body {
         padding-top: 56px;
     }
 }
+
+nav, footer {
+    box-shadow: 0 0 10px 1px;
+}
