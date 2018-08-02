@@ -6,7 +6,11 @@
     </head>
 
     <body>
-        <div class="row">
+
+
+
+
+    <div class="row">
 
             <div class="col-lg-3">
                 <h1 class="my-4"><spring:message code="categories"/></h1>
