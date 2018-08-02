@@ -76,7 +76,7 @@
 
                             <a class="nav-link" href="#">
                                 <i class="fa fa-shopping-cart"  style="color:white"></i>
-                                <spring:message code="basket"/>
+                                <spring:message code="cart"/>
                                 <span class="badge badge-info">15</span>
 
                             </a>
