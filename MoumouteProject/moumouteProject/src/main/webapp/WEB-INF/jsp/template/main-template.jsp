@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/importTags.jsp"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
@@ -31,12 +32,25 @@
 
 
 
+
+
+
+
+
     <body>
+
+
+
+
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/>
             <div class="container">
+
+
+
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,33 +60,32 @@
 
                             <a class="nav-link" href="#">
                                 <i class="fa fa-home" style="color:white"></i>
-                                Accueil
+                                <spring:message code="home"/>
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
 
                             <a class="nav-link" href="#">
-                                <i class="fa fa-address-book" style="color:white"></i>
-                                Se connecter</a>
+                                <i class="fa fa-sign-in"  style="color:white"></i>
+                                <spring:message code="sign_in"/>
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-shopping-cart"  style="color:white"></i>
+                                <spring:message code="basket"/>
+                                <span class="badge badge-info">15</span>
+
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <%
-                                if(true)
-                                {
-                                %>
-                                    <span class="flag-icon flag-icon-gb"></span> English (UK)</a>
-                                <%
-                                }
-                                %>
+                                <spring:message code="flagLanguage"/>
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="${langEn}"><span class="flag-icon flag-icon-gb"></span> English (UK)</a>
@@ -95,7 +108,7 @@
         <!-- Footer -->
         <footer class="py-5 bg-dark">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
         </footer>
 
