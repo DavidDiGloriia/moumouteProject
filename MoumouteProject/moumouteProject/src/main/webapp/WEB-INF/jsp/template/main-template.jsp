@@ -11,15 +11,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.css">
-
+        <link href="<spring:url value='/lib/css/bootstrap.css'/>" rel="stylesheet">
+        <link href="<spring:url value='/css/main-template.css'/>" rel="stylesheet">
 
         <title>Mangeons le mulet !</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="<spring:url value='/lib/css/bootstrap.css'/>" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="<spring:url value='/css/main-template.css'/>" rel="stylesheet">
 
         <spring:url var="langFr" value="">
             <spring:param name="lang" value="fr"/>
@@ -27,61 +22,43 @@
         <spring:url var="langEn" value="">
             <spring:param name="lang" value="en"/>
         </spring:url>
+
     </head>
-
-
-
-
-
-
-
-
 
     <body>
 
-
-
-
-
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/>
-            <div class="container">
-
-
-
+            <a href="<spring:url value="/"/>"><img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/></a>
+            <div class="container" style="margin-right: 0">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-home" style="color:white"></i>
+                        <li class="nav-item ${pageContext.request.requestURI.contains('/home') ? ' active' : ''}"> <!-- ça marche pas mais c'est un truc du genre -->
+                            <a class="nav-link" href="<spring:url value="/home"/>">
+                                <i class="fa fa-home"></i>
                                 <spring:message code="home"/>
-                                <span class="sr-only">(current)</span>
+                                <!--<span class="sr-only">(current)</span>-->
                             </a>
                         </li>
-                        <li class="nav-item">
 
-                            <a class="nav-link" href="#">
+                        <li class="nav-item ${pageContext.request.requestURI.contains('/login') ? ' active' : ''}">
+                            <a class="nav-link" href="<spring:url value="/login"/>">
                                 <i class="fa fa-sign-in"  style="color:white"></i>
                                 <spring:message code="sign_in"/>
                             </a>
                         </li>
 
                         <li class="nav-item">
-
                             <a class="nav-link" href="#">
                                 <i class="fa fa-shopping-cart"  style="color:white"></i>
                                 <spring:message code="cart"/>
                                 <span class="badge badge-info">15</span>
-
                             </a>
                         </li>
-
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -92,8 +69,6 @@
                                 <a class="dropdown-item" href="${langFr}"><span class="flag-icon flag-icon-fr"></span> Français</a>
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
