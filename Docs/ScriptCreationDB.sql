@@ -18,96 +18,88 @@ Create table User (
 );
 
 
-
-Create table Categorie (
+Create table Category (
 	id int primary key,
-    nom varchar(100) not null
+    name varchar(100) not null
+);
+
+
+Create table Wig (
+	Id int primary key,
+    EVATPrice decimal(15,2) not null,
+    VATrate decimal(2,2) not null check (VATrate > 0),
+    isMan boolean not null,
+    category int not null,
+    foreign key (category) references Category(id)
+);
+
+
+Create table PictureLink (
+	link varchar(255) primary key,
+    wigId int not null,
+    foreign key (wigId) references Wig(Id)
 );
 
 
 
-Create table Perruque (
-	numPerruque int primary key,
-    prixHTVA decimal(15,2) not null,
-    tauxTVA decimal(2,2) not null check (tauxTVA > 0),
-    estHomme boolean not null,
-    categorie int not null,
-    foreign key (categorie) references Categorie(id)
+Create table Language (
+	languageCode varchar(10) primary key
 );
-
-
-Create table LienImage (
-	lien varchar(255) primary key,
-    numPerruque int not null,
-    foreign key (numPerruque) references Perruque(numPerruque)
-);
-
-
-
-Create table Langue (
-	codeLangue varchar(10) primary key
-);
-
 
 
 Create table TradPerruque (
-	codeLangue varchar(10) not null,
-    numPerruque int not null,
-    nomPerruque varchar(50) not null,
+	languageCode varchar(10) not null,
+    wigId int not null,
+    wigName varchar(50) not null,
     description varchar(500) not null,
-    primary key (codeLangue, numPerruque),
-    foreign key (codeLangue) references Langue(codeLangue),
-    foreign key (numPerruque) references Perruque(numPerruque)
+    primary key (languageCode, wigId),
+    foreign key (languageCode) references Language(languageCode),
+    foreign key (wigId) references Wig(Id)
 );
 
 
-
-Create table Couleur (
+Create table Color (
 	id int primary key,
-    codeRGB varchar(10) not null
+    RGB varchar(10) not null
 );
 
 
-
-Create table TradCouleur (
-	codeLangue varchar(10) not null,
-    idCouleur int not null,
+Create table ColorTrad (
+	languageCode varchar(10) not null,
+    ColorId int not null,
     couleur varchar(30) not null,
-    primary key (codeLangue, idCouleur),
-    foreign key (codeLangue) references Langue(codeLangue),
-    foreign key (idCouleur) references Couleur(id)
+    primary key (languageCode, ColorId),
+    foreign key (languageCode) references Language(languageCode),
+    foreign key (ColorId) references Color(id)
 );
 
 
-
-Create table Coloris (
-	numPerruque int not null,
-    idCouleur int not null,
-    primary key (numPerruque, idCouleur),
-    foreign key (numPerruque) references Perruque(numPerruque),
-    foreign key (idCouleur) references Couleur(id)
+Create table WigColor (
+	wigId int not null,
+    ColorId int not null,
+    primary key (wigId, ColorId),
+    foreign key (wigId) references Wig(Id),
+    foreign key (ColorId) references Color(id)
 );
 
 
-
-Create table Commande (
+Create table Order (
 	id int primary key,
-    dateCommande datetime not null,
+    orderDate datetime not null,
     userName varchar(100) not null,
     foreign key (userName) references User(userName)
 );
 
 
-
-Create table LigneCommande (
-	numero int not null,
-    quantite int not null check (quantite > 0),
-    prixUnitaireHTVA decimal(15,2)  not null,
-    idCommande int not null,
-    numPerruque int not null,
-    primary key (numero, idCommande),
-    foreign key (idCommande) references Commande(id),
-    foreign key (numPerruque) references Perruque(numPerruque)
+Create table OrderLine (
+	number int not null,
+    quantity int not null check (quantity > 0),
+    unitPriceEVAT decimal(15,2)  not null,
+    orderId int not null,
+    wigId int not null,
+    primary key (number, orderId),
+    foreign key (orderId) references Order(id),
+    foreign key (wigId) references Wig(Id)
 );
 
 

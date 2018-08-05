@@ -44,3 +44,7 @@ nav, footer {
 nav ul .active > i {
     color: white;
 }
+
+.navbar-toggler {
+    margin-left: auto;
+}

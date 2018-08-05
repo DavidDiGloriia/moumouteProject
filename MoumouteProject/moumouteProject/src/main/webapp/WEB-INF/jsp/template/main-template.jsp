@@ -30,14 +30,14 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a href="<spring:url value="/"/>"><img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/></a>
-            <div class="container" style="margin-right: 0">
+            <div class="container" style="margin-right: 0; width: auto">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item ${pageContext.request.requestURI.contains('/home') ? ' active' : ''}"> <!-- ça marche pas mais c'est un truc du genre -->
+                        <li class="nav-item active ${pageContext.request.requestURI.contains('/home') ? ' active' : ''}"> <!-- ça marche pas mais c'est un truc du genre -->
                             <a class="nav-link" href="<spring:url value="/home"/>">
                                 <i class="fa fa-home"></i>
                                 <spring:message code="home"/>
