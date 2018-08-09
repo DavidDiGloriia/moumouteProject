@@ -52,7 +52,7 @@ public class UserEntity
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @OneToMany(mappedBy = "username", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<OrderTicketEntity> OrderTickets;
 
     public String getUsername() {

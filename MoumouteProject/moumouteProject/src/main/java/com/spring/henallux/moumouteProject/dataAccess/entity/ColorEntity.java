@@ -15,10 +15,10 @@ public class ColorEntity
     @Column(name = "rgb")
     private String rgb;
 
-    @OneToMany(mappedBy = "colorid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
     private Collection<WigColorEntity> wigColors;
 
-    @OneToMany(mappedBy = "colorid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
     private Collection<ColorTradEntity> colorTrads;
 
     public Integer getId() {

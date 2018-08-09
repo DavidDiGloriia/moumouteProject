@@ -11,10 +11,10 @@ public class CategoryEntity
     @Column(name = "id")
     private Integer id;
 
-    @OneToMany(mappedBy = "categoryid")
+    @OneToMany(mappedBy = "category")
     private Collection<WigEntity> wigs;
 
-    @OneToMany(mappedBy = "categoryid")
+    @OneToMany(mappedBy = "category")
     private Collection<CategoryTradEntity> categoryTrads;
 
     public Integer getId() {

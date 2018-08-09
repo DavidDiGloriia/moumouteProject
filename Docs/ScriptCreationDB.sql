@@ -76,7 +76,7 @@ Create table WigColor (
 	id int primary key,
 	wigId int not null,
     colorId int not null,
-    foreign key (wigId) references Wig(Id),
+    foreign key (wigId) references Wig(id),
     foreign key (colorId) references Color(id)
 );
 
@@ -95,7 +95,7 @@ Create table OrderLine (
     orderId int not null,
     wigId int not null,
     foreign key (orderId) references OrderTicket(id),
-    foreign key (wigId) references Wig(Id)
+    foreign key (wigId) references Wig(id)
 );
 
 

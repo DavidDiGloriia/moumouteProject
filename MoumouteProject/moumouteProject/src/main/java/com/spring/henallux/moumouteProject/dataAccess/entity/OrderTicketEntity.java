@@ -20,7 +20,7 @@ public class OrderTicketEntity
     @ManyToOne
     private UserEntity user;
 
-    @OneToMany(mappedBy = "linenumber", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderTicket", fetch = FetchType.LAZY)
     private Collection<OrderLineEntity> OrderLines;
 
     public Integer getId() {

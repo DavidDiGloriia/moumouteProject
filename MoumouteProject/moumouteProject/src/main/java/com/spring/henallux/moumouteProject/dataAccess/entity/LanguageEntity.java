@@ -12,13 +12,13 @@ public class LanguageEntity
     @Column(name = "code")
     private String code;
 
-    @OneToMany(mappedBy = "languagecode", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
     private Collection<CategoryTradEntity> categoryTrads;
 
-    @OneToMany(mappedBy = "languagecode", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrads;
 
-    @OneToMany(mappedBy = "languagecode", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
     private Collection<ColorTradEntity> colorTrads;
 
     public String getCode() {

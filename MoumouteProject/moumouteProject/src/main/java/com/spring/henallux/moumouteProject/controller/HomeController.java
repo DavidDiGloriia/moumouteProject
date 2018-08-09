@@ -1,15 +1,16 @@
 package com.spring.henallux.moumouteProject.controller;
 
-import com.spring.henallux.moumouteProject.model.Perruque;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping(value={"", "/home"})
-public class HomeController {
+public class HomeController
+{
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model)
     {

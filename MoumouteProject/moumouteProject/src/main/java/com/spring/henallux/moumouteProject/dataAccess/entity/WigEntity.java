@@ -21,16 +21,16 @@ public class WigEntity
     @Column(name = "isman")
     private boolean isMan;
 
-    @OneToMany(mappedBy = "wigid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<OrderLineEntity> orderLines;
 
-    @OneToMany(mappedBy = "link", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<PictureLinkEntity> pictureLinks;
 
-    @OneToMany(mappedBy = "wigid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrad;
 
-    @OneToMany(mappedBy = "wigid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigColorEntity> WigColors;
 
     @JoinColumn(name = "categoryid", referencedColumnName = "id")
