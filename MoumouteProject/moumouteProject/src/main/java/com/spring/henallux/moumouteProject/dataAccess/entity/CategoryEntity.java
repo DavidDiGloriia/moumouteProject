@@ -17,6 +17,8 @@ public class CategoryEntity
     @OneToMany(mappedBy = "category")
     private Collection<CategoryTradEntity> categoryTrads;
 
+
+
     public Integer getId() {
         return id;
     }

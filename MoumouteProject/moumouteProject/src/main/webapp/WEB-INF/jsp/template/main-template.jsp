@@ -13,8 +13,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.css">
         <link href="<spring:url value='/lib/css/bootstrap.css'/>" rel="stylesheet">
         <link href="<spring:url value='/css/main-template.css'/>" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
-        <title>Mangeons le mulet !</title>
+        <title>${title}</title>
 
         <spring:url var="langFr" value="">
             <spring:param name="lang" value="fr"/>
@@ -23,14 +24,68 @@
             <spring:param name="lang" value="en"/>
         </spring:url>
 
+
+
     </head>
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(document).ready(function(e){
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+        });
+    </script>
+
+
 
     <body>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a href="<spring:url value="/"/>"><img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/></a>
-            <div class="container" style="margin-right: 0; width: auto">
+
+
+
+            <div class="row" style="width:50%;margin-left:1%">
+
+                <div class="input-group">
+                    <div class="input-group-btn search-panel">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> <span id="search_concept">Filter by</span>  <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+
+                            <c:forEach var="category" items="${categories}">
+                                <li class="dropdown-item"><a href="#contains">${category.categoryName}</a></li>
+                            </c:forEach>
+
+                            <li class="divider dropdown-item"></li>
+                            <li class="dropdown-item"><a href="#all">Anything</a>
+
+                        </ul>
+                    </div>
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+                    <input type="text" class="form-control" name="x" placeholder="Search term..."> <span class="input-group-btn">
+
+                    <button class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="container" style="margin-right: 5%; margin-right:5% ; width: auto" >
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -74,7 +129,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container" style="margin-left:5%; margin-right:5%">
             <tiles:insertAttribute name = "main-content" />
         </div>
 
