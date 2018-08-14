@@ -40,7 +40,7 @@ public class HomeController
 
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new Wig());
-        model.addAttribute("title", messageSource.getMessage("homeTitle",null,locale));
+        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         return "integrated:home";
     }
 

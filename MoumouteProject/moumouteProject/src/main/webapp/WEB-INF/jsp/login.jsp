@@ -3,18 +3,36 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <link href="<spring:url value='/css/login.css'/>" rel="stylesheet">
     </head>
     <body>
         <div class="log-form">
-            <h2>Login to your account</h2>
-            <form>
-                <input type="text" title="username" placeholder="username" />
-                <input type="password" title="username" placeholder="password" />
-                <button type="submit" class="btn">Login</button>
-                <a class="forgot" href="#">Forgot Username?</a>
-            </form>
+            <h2><spring:message code="login.title"/></h2>
+            <form:form  id="loginForm"
+                        method="post"
+                        modelAttribute="user">
+
+                <spring:message code="login.username" var="usernameMsg"/>
+                <form:input path="username" type="text" placeholder="${usernameMsg}"/>
+                <div class="display-error">
+                    <form:errors path="username"/>
+                </div>
+
+                <spring:message code="login.password" var="passwordMsg"/>
+                <form:input path="password" type="password" placeholder="${passwordMsg}"/>
+                <div class="display-error">
+                    <form:errors path="password"/>
+                </div>
+
+                <form:button class="btn"><spring:message code="login.login_btn"/></form:button>
+                <a class="register" href="<spring:url value="/register"/>"><spring:message code="login.register"/></a>
+                <div class="display-error">
+                    <c:if test="${errorMessage}"><spring:message code="login.fail"/></c:if>
+                </div>
+                <div class="display-succeed">
+                    <c:if test="${registerSucceed}"><spring:message code="login.register_succeed"/></c:if>
+                </div>
+            </form:form>
         </div>
     </body>
 </html>

@@ -1,10 +1,10 @@
-.log-form {
+.reg-form {
     width: 40%;
     min-width: 320px;
     max-width: 475px;
     background: #fff;
     position: relative;
-    margin: calc(25% - 60px) auto calc(25% - 60px) auto;
+    margin: 5% auto 5% auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
 }
 @media (max-width: 40em) {
@@ -12,12 +12,12 @@
         width: 95%;
     }
 }
-.log-form form {
+.reg-form form {
     display: block;
     width: 100%;
     padding: 2em;
 }
-.log-form h2 {
+.reg-form h2 {
     color: #c8c8c8;
     font-size: 1.35em;
     display: block;
@@ -30,7 +30,7 @@
     margin: 0;
     font-weight: 200;
 }
-.log-form input {
+.reg-form input {
     display: block;
     margin: auto ;
     width: 100%;
@@ -41,10 +41,10 @@
     padding-bottom: 1.25em;
     color: #757575;
 }
-.log-form input:focus {
+.reg-form input:focus {
     outline: none;
 }
-.log-form .btn {
+.reg-form .btn {
     display: inline-block;
     background: #1fb5bf;
     border: 1px solid #1ba0a9;
@@ -53,17 +53,17 @@
     margin-right: .5em;
     box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.19999999999999996);
 }
-.log-form .btn:hover {
+.reg-form .btn:hover {
     background: #23cad5;
 }
-.log-form .btn:active {
+.reg-form .btn:active {
     background: #1fb5bf;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.09999999999999998);
 }
-.log-form .btn:focus {
+.reg-form .btn:focus {
     outline: none;
 }
-.log-form .register {
+.reg-form .login {
     color: #33d3de;
     line-height: .5em;
     position: relative;
@@ -74,13 +74,10 @@
     padding: 0;
     float: right;
 }
-.log-form .register:hover {
+.reg-form .login:hover {
     color: #1ba0a9;
 }
 .display-error {
     color: red;
     margin-bottom: 2em;
-}
-.display-succeed {
-    color:green;
 }

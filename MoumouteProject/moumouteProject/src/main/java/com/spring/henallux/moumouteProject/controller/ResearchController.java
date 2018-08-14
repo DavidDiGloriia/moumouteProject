@@ -28,7 +28,7 @@ public class ResearchController {
     public String home(Model model, Locale locale)
     {
         model.addAttribute("itemToSearch", new Wig());
-        model.addAttribute("title", messageSource.getMessage("homeTitle",null,locale));
+        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         return "integrated:itemsList";
     }
 

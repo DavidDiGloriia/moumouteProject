@@ -1,13 +1,20 @@
 package com.spring.henallux.moumouteProject.dataAccess.entity;
 
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import static org.hibernate.annotations.common.util.StringHelper.isEmpty;
 
 @Entity
 @Table(name="user")
-public class UserEntity
-{
+public class UserEntity implements UserDetails {
     //ATTENTION PAR DE MAJ DANS LES NOM DE COLONE ET TABLE
     @Id
     @Column(name = "username")
@@ -55,17 +62,81 @@ public class UserEntity
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<OrderTicketEntity> OrderTickets;
 
+
+
+
+
+    @Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        if(!isEmpty(authorities)) {
+            String[] authoritiesAsArray = authorities.split(",");
+            for(String authority : authoritiesAsArray) {
+                if(!isEmpty(authority)) {
+                    grantedAuthorities.add(new SimpleGrantedAuthority(authority));
+                }
+            }
+        }
+        return grantedAuthorities;
+    }
+
+    @Override
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return non_Expired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return non_Locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return credentials_Non_Expired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
+    }
+
+    public void setNon_Expired(Boolean non_Expired) {
+        this.non_Expired = non_Expired;
+    }
+
+    public void setNon_Locked(Boolean non_Locked) {
+        this.non_Locked = non_Locked;
+    }
+
+    public void setCredentials_Non_Expired(Boolean credentials_Non_Expired) {
+        this.credentials_Non_Expired = credentials_Non_Expired;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
+
 
     public void setPassword(String password) {
         this.password = password;
@@ -127,45 +198,6 @@ public class UserEntity
         this.country = country;
     }
 
-    public String getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(String authorities) {
-        this.authorities = authorities;
-    }
-
-    public Boolean getNon_Expired() {
-        return non_Expired;
-    }
-
-    public void setNon_Expired(Boolean non_Expired) {
-        this.non_Expired = non_Expired;
-    }
-
-    public Boolean getNon_Locked() {
-        return non_Locked;
-    }
-
-    public void setNon_Locked(Boolean non_Locked) {
-        this.non_Locked = non_Locked;
-    }
-
-    public Boolean getCredentials_Non_Expired() {
-        return credentials_Non_Expired;
-    }
-
-    public void setCredentials_Non_Expired(Boolean credentials_Non_Expired) {
-        this.credentials_Non_Expired = credentials_Non_Expired;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
 
     public Collection<OrderTicketEntity> getOrderTickets() {
         return OrderTickets;
