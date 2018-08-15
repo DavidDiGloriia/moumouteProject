@@ -71,7 +71,7 @@ public class RegisterController
             else
             {
                 if(userDAO.registerUser(userRegisterForm)) {
-                    return "redirect:/login?registerSucceed=true";
+                    return "redirect:/login";
                 } else {
                     model.addAttribute("errorOccurred", true);
                     return "integrated:register";

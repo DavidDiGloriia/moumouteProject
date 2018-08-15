@@ -81,6 +81,7 @@
     color: red;
     margin-bottom: 2em;
 }
-.display-succeed {
-    color:green;
+.margin-top {
+    margin-bottom: 0;
+    margin-top: 3em;
 }

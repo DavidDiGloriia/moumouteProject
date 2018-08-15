@@ -82,9 +82,6 @@
             </div>
 
 
-
-
-
             <div class="container" style="margin-right: 5%; margin-right:5% ; width: auto" >
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,12 +97,26 @@
                             </a>
                         </li>
 
-                        <li class="nav-item ${pageContext.request.requestURI.contains('/login') ? ' active' : ''}">
-                            <a class="nav-link" href="<spring:url value="/login"/>">
-                                <i class="fa fa-sign-in"  style="color:white"></i>
-                                <spring:message code="sign_in"/>
-                            </a>
-                        </li>
+                        <sec:authorize access="!isAuthenticated()">
+                            <li class="nav-item ${pageContext.request.requestURI.contains('/login') ? ' active' : ''}">
+                                <a class="nav-link" href="<spring:url value="/login"/>">
+                                    <i class="fa fa-sign-in"  style="color:white"></i>
+                                    <spring:message code="sign_in"/>
+                                </a>
+                            </li>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <sec:authentication property="principal.username"/>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#"><spring:message code="my_profile"/> </a>
+                                    <a class="dropdown-item" href="<spring:url value="/logout"/>"><spring:message code="logout"/> </a>
+                                </div>
+                            </li>
+                        </sec:authorize>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">

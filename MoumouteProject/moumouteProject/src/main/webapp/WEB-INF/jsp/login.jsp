@@ -26,11 +26,8 @@
 
                 <form:button class="btn"><spring:message code="login.login_btn"/></form:button>
                 <a class="register" href="<spring:url value="/register"/>"><spring:message code="login.register"/></a>
-                <div class="display-error">
+                <div class="display-error margin-top">
                     <c:if test="${errorMessage}"><spring:message code="login.fail"/></c:if>
-                </div>
-                <div class="display-succeed">
-                    <c:if test="${registerSucceed}"><spring:message code="login.register_succeed"/></c:if>
                 </div>
             </form:form>
         </div>
