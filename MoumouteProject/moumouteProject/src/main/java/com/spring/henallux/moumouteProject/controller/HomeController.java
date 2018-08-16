@@ -2,6 +2,7 @@ package com.spring.henallux.moumouteProject.controller;
 
 import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.model.Category;
+import com.spring.henallux.moumouteProject.model.SearchWigForm;
 import com.spring.henallux.moumouteProject.model.Wig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -29,7 +30,7 @@ public class HomeController
     public String home(Model model, Locale locale)
     {
         model.addAttribute("categories", categoryDAO.getAllCategories());
-        model.addAttribute("itemToSearch", new Wig());
+        model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         return "integrated:home";
     }

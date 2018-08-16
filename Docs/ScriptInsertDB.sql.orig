@@ -3,6 +3,8 @@ Use moumoute;
 INSERT INTO Language VALUE ("FR");
 INSERT INTO Language VALUE ("EN");
 
+<<<<<<< HEAD
+=======
 
 INSERT INTO CategoryTrad VALUES(1,"EN",1,"Ginger");
 INSERT INTO CategoryTrad VALUES(2,"FR",1,"Roux");
@@ -39,3 +41,4 @@ Create table PictureLink (
     wigId int not null,
     foreign key (wigId) references Wig(id)
 );
+>>>>>>> 683ed698e7d33c748e107751c8cec9ca58fb6f2a
