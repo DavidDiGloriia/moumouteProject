@@ -3,7 +3,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 
 
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,33 +23,28 @@
             <spring:param name="lang" value="en"/>
         </spring:url>
 
-
-
-    </head>
-
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-    <script>
-        $(document).ready(function(e){
-            $('.search-panel .dropdown-menu').find('a').click(function(e) {
-                e.preventDefault();
-                var param = $(this).attr("href").replace("#","");
-                var concept = $(this).text();
-                $('.search-panel span#search_concept').text(concept);
-                $('.input-group #search_param').val(param);
+        <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+        <!-- Bootstrap core JavaScript -->
+        <script src="<spring:url value='/lib/js/jquery.js'/>"></script>
+        <script src="<spring:url value='/lib/js/bootstrap.bundle.js'/>"></script>
+        <script>
+            $(document).ready(function(e){
+                $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                    e.preventDefault();
+                    var param = $(this).attr("href").replace("#","");
+                    var concept = $(this).text();
+                    $('.search-panel span#search_concept').text(concept);
+                    $('.input-group #search_param').val(param);
+                });
             });
-        });
-    </script>
-
-
+        </script>
+    </head>
 
     <body>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a href="<spring:url value="/"/>"><img style="height:40px" src='<spring:url value="/images/logo_header.png"/>'/></a>
-
-
 
             <div class="row" style="width:50%;margin-left:1%">
 
@@ -77,18 +71,15 @@
                     </span>
                 </div>
 
-
-
             </div>
 
-
             <div class="container" style="margin-right: 5%; margin-right:5% ; width: auto" >
-
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+
                         <li class="nav-item active ${pageContext.request.requestURI.contains('/home') ? ' active' : ''}"> <!-- ça marche pas mais c'est un truc du genre -->
                             <a class="nav-link" href="<spring:url value="/home"/>">
                                 <i class="fa fa-home"></i>
@@ -105,6 +96,7 @@
                                 </a>
                             </li>
                         </sec:authorize>
+
                         <sec:authorize access="isAuthenticated()">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -140,10 +132,9 @@
             </div>
         </nav>
 
-        <div class="container" style="margin-left:5%; margin-right:5%">
+        <div class="container">
             <tiles:insertAttribute name = "main-content" />
         </div>
-
 
 
         <!-- Footer -->
@@ -152,9 +143,5 @@
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
         </footer>
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="<spring:url value='/lib/js/jquery.js'/>"></script>
-        <script src="<spring:url value='/lib/js/bootstrap.bundle.js'/>"></script>
     </body>
 </html>

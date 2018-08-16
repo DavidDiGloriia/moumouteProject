@@ -36,25 +36,12 @@ Create table CategoryTrad (
 );
 
 
-Create table Color (
-	id int primary key,
-    RGB varchar(10) not null
-);
-Create table ColorTrad (
-	id int primary key,
-	colorName varchar(30) not null,
-	languageCode varchar(10) not null,
-    colorId int not null,
-    foreign key (languageCode) references Language(code),
-    foreign key (colorId) references Color(id)
-);
-
-
 Create table Wig (
 	id int primary key,
     EVATPrice decimal(15,2) not null,
     VATrate decimal(2,2) not null check (VATrate > 0),
     isMan boolean not null,
+	pictureLink varchar(255),
     categoryId int not null,
     foreign key (categoryId) references Category(id)
 );
@@ -67,39 +54,26 @@ Create table WigTrad (
     foreign key (languageCode) references Language(code),
     foreign key (wigId) references Wig(id)
 );
-Create table PictureLink (
-	link varchar(255) primary key,
-    wigId int not null,
-    foreign key (wigId) references Wig(id)
-);
-Create table WigColor (
-	id int primary key,
-	wigId int not null,
-    colorId int not null,
-    foreign key (wigId) references Wig(id),
-    foreign key (colorId) references Color(id)
-);
 
 
-Create table OrderTicket (
-	id int primary key,
-    orderDate datetime not null,
+
+Create table Sale (
+	id int identity(1,1) primary key,
+    saleDate datetime not null,
     username varchar(100) not null,
     foreign key (username) references User(username)
 );
-Create table OrderLine (
-	id int primary key,
+Create table SaleLine (
+	id int identity(1,1) primary key,
 	lineNumber int not null,
     quantity int not null check (quantity > 0),
     unitPriceEVAT decimal(15,2)  not null,
-    orderId int not null,
+    saleId int not null,
     wigId int not null,
-    foreign key (orderId) references OrderTicket(id),
+    foreign key (saleId) references Sale(id),
     foreign key (wigId) references Wig(id)
 );
 
 
 ALTER TABLE CategoryTrad ADD CONSTRAINT uq_CategoryTrad UNIQUE(languageCode, categoryId);
-ALTER TABLE ColorTrad ADD CONSTRAINT uq_ColorTrad UNIQUE(languageCode, colorId);
 ALTER TABLE WigTrad ADD CONSTRAINT uq_WigTrad UNIQUE(languageCode, wigId);
-ALTER TABLE WigColor ADD CONSTRAINT uq_WigColor UNIQUE(wigId, colorId);

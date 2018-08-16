@@ -21,11 +21,11 @@ public class WigEntity
     @Column(name = "isman")
     private boolean isMan;
 
-    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
-    private Collection<OrderLineEntity> orderLines;
+    @Column(name = "picturelink")
+    private String pictureLink;
 
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
-    private Collection<PictureLinkEntity> pictureLinks;
+    private Collection<OrderLineEntity> orderLines;
 
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrad;
@@ -69,20 +69,20 @@ public class WigEntity
         isMan = man;
     }
 
+    public String getPictureLink() {
+        return pictureLink;
+    }
+
+    public void setPictureLink(String pictureLink) {
+        this.pictureLink = pictureLink;
+    }
+
     public Collection<OrderLineEntity> getOrderLines() {
         return orderLines;
     }
 
     public void setOrderLines(Collection<OrderLineEntity> orderLines) {
         this.orderLines = orderLines;
-    }
-
-    public Collection<PictureLinkEntity> getPictureLinks() {
-        return pictureLinks;
-    }
-
-    public void setPictureLinks(Collection<PictureLinkEntity> pictureLinks) {
-        this.pictureLinks = pictureLinks;
     }
 
     public Collection<WigTradEntity> getWigTrad() {
