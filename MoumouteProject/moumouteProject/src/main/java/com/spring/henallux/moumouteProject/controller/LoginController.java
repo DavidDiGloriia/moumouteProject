@@ -2,6 +2,8 @@ package com.spring.henallux.moumouteProject.controller;
 
 
 import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
+import com.spring.henallux.moumouteProject.model.SearchWigForm;
+import com.spring.henallux.moumouteProject.model.Wig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ public class LoginController
     {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("errorMessage", isError);
+        model.addAttribute("itemToSearch", new SearchWigForm());
         return "integrated:login";
     }
 }

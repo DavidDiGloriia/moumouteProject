@@ -1,5 +1,6 @@
 package com.spring.henallux.moumouteProject.controller;
 
+import com.spring.henallux.moumouteProject.model.SearchWigForm;
 import com.spring.henallux.moumouteProject.model.Wig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -33,10 +34,11 @@ public class ResearchController {
     }
 
     @RequestMapping(value="/send", method = RequestMethod.POST)
-    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")Wig wig)
+    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form)
     {
-        model.addAttribute("itemToSearch", new Wig());
-        model.addAttribute("title","temporaire");
+
+        model.addAttribute("itemToSearch", new SearchWigForm());
+        model.addAttribute("title","Résultat de la recherche pour "+form.getWigName());
         return "integrated:itemsList";
     }
 
