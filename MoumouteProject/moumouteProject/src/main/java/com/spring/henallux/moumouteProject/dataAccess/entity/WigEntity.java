@@ -30,9 +30,6 @@ public class WigEntity
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrad;
 
-    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
-    private Collection<WigColorEntity> WigColors;
-
     @JoinColumn(name = "categoryid", referencedColumnName = "id")
     @ManyToOne
     private CategoryEntity category;
@@ -91,14 +88,6 @@ public class WigEntity
 
     public void setWigTrad(Collection<WigTradEntity> wigTrad) {
         this.wigTrad = wigTrad;
-    }
-
-    public Collection<WigColorEntity> getWigColors() {
-        return WigColors;
-    }
-
-    public void setWigColors(Collection<WigColorEntity> wigColors) {
-        WigColors = wigColors;
     }
 
     public CategoryEntity getCategory() {

@@ -3,7 +3,6 @@ package com.spring.henallux.moumouteProject.dataAccess.dao;
 
 import com.spring.henallux.moumouteProject.dataAccess.entity.WigEntity;
 import com.spring.henallux.moumouteProject.dataAccess.entity.WigTradEntity;
-import com.spring.henallux.moumouteProject.dataAccess.repository.WigColorRepository;
 import com.spring.henallux.moumouteProject.dataAccess.repository.WigRepository;
 import com.spring.henallux.moumouteProject.dataAccess.repository.WigTradRepository;
 import com.spring.henallux.moumouteProject.dataAccess.util.ProviderCenter;
@@ -18,14 +17,12 @@ import java.util.ArrayList;
 public class WigDAO
 {
     private WigRepository wigRepository;
-    private WigColorRepository wigColorRepository;
     private WigTradRepository wigTradRepository;
     private ProviderCenter providerCenter;
 
     @Autowired
-    public WigDAO(WigRepository wigRepository, WigColorRepository wigColorRepository, WigTradRepository wigTradRepository, ProviderCenter providerCenter) {
+    public WigDAO(WigRepository wigRepository,  WigTradRepository wigTradRepository, ProviderCenter providerCenter) {
         this.wigRepository = wigRepository;
-        this.wigColorRepository = wigColorRepository;
         this.wigTradRepository = wigTradRepository;
         this.providerCenter = providerCenter;
     }

@@ -28,24 +28,16 @@ public class ResearchController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, Locale locale)
     {
-        model.addAttribute("itemToSearch", new Wig());
+        model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         return "integrated:itemsList";
     }
 
-    @RequestMapping(value="/send", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form)
     {
-
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title","Résultat de la recherche pour "+form.getWigName());
         return "integrated:itemsList";
     }
-
-
-
-
-
-
-
 }

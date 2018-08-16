@@ -18,9 +18,6 @@ public class LanguageEntity
     @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrads;
 
-    @OneToMany(mappedBy = "language", fetch = FetchType.LAZY)
-    private Collection<ColorTradEntity> colorTrads;
-
     public String getCode() {
         return code;
     }
@@ -43,13 +40,5 @@ public class LanguageEntity
 
     public void setWigTrads(Collection<WigTradEntity> wigTrads) {
         this.wigTrads = wigTrads;
-    }
-
-    public Collection<ColorTradEntity> getColorTrads() {
-        return colorTrads;
-    }
-
-    public void setColorTrads(Collection<ColorTradEntity> colorTrads) {
-        this.colorTrads = colorTrads;
     }
 }

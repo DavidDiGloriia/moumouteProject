@@ -8,17 +8,6 @@
     <body>
 
     <div class="row">
-
-            <div class="col-lg-3">
-                <h1 class="my-4"><spring:message code="categories"/></h1>
-                <div class="list-group">
-                    <c:forEach var="category" items="${categories}">
-                        <a href="<spring:url value="/research?category=${category.categoryName}"/>" class="list-group-item">${category.categoryName}</a>
-                    </c:forEach>
-                </div>
-            </div>
-            <!-- /.col-lg-3 -->
-
             <div class="col-lg-9">
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                     <ol class="carousel-indicators">

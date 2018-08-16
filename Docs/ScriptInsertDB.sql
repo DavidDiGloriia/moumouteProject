@@ -3,6 +3,8 @@ Use moumoute;
 INSERT INTO Language VALUE ("FR");
 INSERT INTO Language VALUE ("EN");
 
+INSERT INTO category VALUES(1);
+INSERT INTO category VALUES(1);
 
 INSERT INTO CategoryTrad VALUES(1,"EN",1,"Ginger");
 INSERT INTO CategoryTrad VALUES(2,"FR",1,"Roux");
@@ -12,6 +14,7 @@ INSERT INTO CategoryTrad VALUES(4,"FR",2,"Femmes");
 INSERT INTO Wig     VALUES(1,10.50,21,false,5);
 INSERT INTO WigTrad VALUES(1,"FR",1,"Harley Quinn","Perruque d'Harley Quinn pour déguisements");
 INSERT INTO WigTrad VALUES(1,"EN",1,"Harley Quinn","Harley Quinn's Wig for disguise");
+
 
 
 Create table WigTrad (

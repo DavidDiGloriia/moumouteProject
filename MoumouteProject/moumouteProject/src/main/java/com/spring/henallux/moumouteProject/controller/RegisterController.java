@@ -3,6 +3,7 @@ package com.spring.henallux.moumouteProject.controller;
 
 import com.spring.henallux.moumouteProject.dataAccess.dao.UserDAO;
 import com.spring.henallux.moumouteProject.dataAccess.util.ProviderCenter;
+import com.spring.henallux.moumouteProject.model.SearchWigForm;
 import com.spring.henallux.moumouteProject.model.UserRegisterForm;
 import com.spring.henallux.moumouteProject.model.Wig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class RegisterController
     public String register(Model model)
     {
         model.addAttribute("user", new UserRegisterForm());
-        model.addAttribute("itemToSearch", new Wig());
+        model.addAttribute("itemToSearch", new SearchWigForm());;
         return "integrated:register";
     }
 
