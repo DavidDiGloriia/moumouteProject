@@ -1,5 +1,8 @@
 package com.spring.henallux.moumouteProject.controller;
 
+import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
+import com.spring.henallux.moumouteProject.dataAccess.dao.WigDAO;
+import com.spring.henallux.moumouteProject.model.Category;
 import com.spring.henallux.moumouteProject.model.SearchWigForm;
 import com.spring.henallux.moumouteProject.model.Wig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,15 @@ import java.util.Locale;
 public class ResearchController {
 
     private final MessageSource messageSource;
+    private WigDAO wigDAO;
+    private CategoryDAO categoryDAO;
 
     @Autowired
-    public ResearchController(MessageSource messageSource)
+    public ResearchController(MessageSource messageSource, WigDAO wigDAO, CategoryDAO categoryDAO)
     {
         this.messageSource = messageSource;
+        this.wigDAO   = wigDAO;
+        this.categoryDAO = categoryDAO;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -33,11 +40,16 @@ public class ResearchController {
         return "integrated:itemsList";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, value="/send")
     public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form)
     {
+
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title","Résultat de la recherche pour "+form.getWigName());
+        model.addAttribute("title","Résultat de la recherche");
+        model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(1,"FR"));
+
+
         return "integrated:itemsList";
     }
 }
