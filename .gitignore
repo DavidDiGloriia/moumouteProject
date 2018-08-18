@@ -4,3 +4,4 @@
 *.iml
 *.ipr
 */application.yml
+/MoumouteProject/moumouteProject/src/main/resources/application.yml

@@ -4,6 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <fmt:setLocale value = "en_US"/>
+
+    <style>
+        .money
+        {
+            color:darkred;
+            font-size:150%;
+        }
+
+        .wigName
+        {
+            font-size:200%;
+        }
+    </style>
 </head>
 
 
@@ -18,10 +32,15 @@
                 <a href="#"><img class="card-img-top" width="700" height="400" src="${item.pictureLink}" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a href="#">${item.wigName}</a>
+                        <a class="wigName" href="#">${item.wigName}</a>
+                          <br>
+
+                        <div class="money">
+
+                            <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€
+                       </div>
                     </h4>
-                    <h5>${item.EVATPrice}</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                    <p class="card-text">${item.description}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
