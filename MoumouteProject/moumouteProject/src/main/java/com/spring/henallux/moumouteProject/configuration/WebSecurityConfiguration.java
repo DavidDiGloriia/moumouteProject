@@ -2,6 +2,7 @@ package com.spring.henallux.moumouteProject.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,6 +17,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 {
     private static final String LOGIN_REQUEST = "/login";
     private static final String[] AUTHORIZED_REQUESTS_ANYBODY = new String[]{"/css/**","/images/**","/lib/**", "/", "/home", "/register", "/items", "/research"};
+    private static final String[] AUTHORIZED_POST_ANYBODY = new String[] {"/research"};
     private static final String DEFAULT_PAGE_LOGIN="/home";
     private static final String PAGE_FAILURE_LOGIN="/login?isError=true";
 
@@ -34,6 +36,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
         http
                 .authorizeRequests()
                 .antMatchers(AUTHORIZED_REQUESTS_ANYBODY).permitAll()
+                .antMatchers(HttpMethod.POST, AUTHORIZED_POST_ANYBODY).permitAll()
                 .anyRequest().authenticated()
 
                 .and()
