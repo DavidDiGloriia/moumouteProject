@@ -39,7 +39,7 @@ Create table CategoryTrad (
 Create table Wig (
 	id int primary key,
     EVATPrice decimal(15,2) not null,
-    VATrate decimal(2,2) not null check (VATrate > 0),
+    VATrate decimal(4,2) not null check (VATrate > 0),
     isMan boolean not null,
 	pictureLink varchar(255),
     categoryId int not null,
@@ -56,15 +56,15 @@ Create table WigTrad (
 );
 
 
-
 Create table Sale (
-	id int identity(1,1) primary key,
+	id int primary key auto_increment,
     saleDate datetime not null,
     username varchar(100) not null,
     foreign key (username) references User(username)
 );
+
 Create table SaleLine (
-	id int identity(1,1) primary key,
+	id int  primary key auto_increment,
 	lineNumber int not null,
     quantity int not null check (quantity > 0),
     unitPriceEVAT decimal(15,2)  not null,

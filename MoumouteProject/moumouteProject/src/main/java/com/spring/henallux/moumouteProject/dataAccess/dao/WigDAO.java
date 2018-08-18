@@ -32,9 +32,12 @@ public class WigDAO
         ArrayList<Wig> wigs = new ArrayList<Wig>();
         WigTradEntity tempWigTrad;
         for(WigEntity wigEntity : wigEntities) {
+
             tempWigTrad = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
             wigs.add(providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, tempWigTrad));
+            System.out.println(wigs.toString());
         }
+
         return wigs;
     }
 }
