@@ -115,10 +115,10 @@
                         </sec:authorize>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<spring:url value="/cart"/>">
                                 <i class="fa fa-shopping-cart"  style="color:white"></i>
                                 <spring:message code="cart"/>
-                                <span class="badge badge-info">15</span>
+                                <span class="badge badge-info">${cartSize}</span>
                             </a>
                         </li>
 
