@@ -50,7 +50,7 @@
 
                 <form:form id="form"
                            method="POST"
-                           action="/moumoute/research/send"
+                           action="/moumoute/research"
                            modelAttribute="itemToSearch"
                            style="width:100%">
 

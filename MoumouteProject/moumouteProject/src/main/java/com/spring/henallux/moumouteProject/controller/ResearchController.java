@@ -40,7 +40,7 @@ public class ResearchController {
         return "integrated:itemsList";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/send")
+    @RequestMapping(method = RequestMethod.POST)
     public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form)
     {
 
@@ -48,8 +48,6 @@ public class ResearchController {
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title","Résultat de la recherche");
         model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(1,"FR"));
-
-
         return "integrated:itemsList";
     }
 }

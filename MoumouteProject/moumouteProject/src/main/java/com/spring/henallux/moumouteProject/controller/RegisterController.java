@@ -35,7 +35,7 @@ public class RegisterController
     public String register(Model model)
     {
         model.addAttribute("user", new UserRegisterForm());
-        model.addAttribute("itemToSearch", new SearchWigForm());;
+        model.addAttribute("itemToSearch", new SearchWigForm());
         return "integrated:register";
     }
 
@@ -77,6 +77,7 @@ public class RegisterController
                     return "redirect:/login";
                 } else {
                     model.addAttribute("errorOccurred", true);
+                    model.addAttribute("itemToSearch", new SearchWigForm());
                     return "integrated:register";
                 }
 
@@ -84,6 +85,7 @@ public class RegisterController
         }
         else
         {
+            model.addAttribute("itemToSearch", new SearchWigForm());
             return "integrated:register";
         }
     }
