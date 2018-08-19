@@ -38,4 +38,11 @@ public class WigDAO
 
         return wigs;
     }
+
+    public Wig getWigById(int id, String lang)
+    {
+        WigEntity wigEntity = wigRepository.findById(id);
+        WigTradEntity wigTradEntity = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
+        return providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, wigTradEntity);
+    }
 }

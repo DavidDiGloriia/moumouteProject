@@ -12,6 +12,5 @@ import java.util.ArrayList;
 public interface WigRepository extends JpaRepository<WigEntity, Integer>
 {
     public ArrayList<WigEntity> findByCategoryId(Integer categoryId);
-
-
+    public WigEntity findById(Integer id);
 }
