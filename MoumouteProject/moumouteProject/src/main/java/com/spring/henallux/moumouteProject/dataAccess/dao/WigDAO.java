@@ -27,6 +27,13 @@ public class WigDAO
         this.providerCenter = providerCenter;
     }
 
+    public Wig getWigFromId(int id, String lang)
+    {
+        WigEntity wigEntity = wigRepository.findOne(id);
+        WigTradEntity wigTradEntity = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
+        return providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, wigTradEntity);
+    }
+
     public ArrayList<Wig> getAllWigFromCategory(int categoryId, String lang) {
         ArrayList<WigEntity> wigEntities = wigRepository.findByCategoryId(categoryId);
         ArrayList<Wig> wigs = new ArrayList<Wig>();

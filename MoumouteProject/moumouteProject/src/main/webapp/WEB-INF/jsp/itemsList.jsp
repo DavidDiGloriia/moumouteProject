@@ -29,10 +29,10 @@
 
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" width="700" height="400" src="${item.pictureLink}" alt=""></a>
+                <a href="<spring:url value="/items?itemId=${item.id}"/>"> <img class="card-img-top" width="700" height="400" src="${item.pictureLink}" alt=""></a>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a class="wigName" href="#">${item.wigName}</a>
+                        <a class="wigName" href="<spring:url value="/items/${item.id}"/>"> ${item.wigName}</a>
                           <br>
 
                         <div class="money">

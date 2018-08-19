@@ -53,6 +53,7 @@ public class ResearchController {
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title","Résultat de la recherche");
+        System.out.println(Integer.parseInt(form.getCategory()));
         model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(Integer.parseInt(form.getCategory()),"FR"));
         model.addAttribute("cartSize", cart.size());
         return "integrated:itemsList";

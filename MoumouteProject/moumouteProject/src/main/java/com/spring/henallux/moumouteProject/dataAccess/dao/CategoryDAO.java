@@ -34,7 +34,7 @@ public class CategoryDAO {
 
         for(CategoryTradEntity categoryTradEntity : categoriesTradEntities)
         {
-            output.add(new Category(categoryTradEntity.getId(),categoryTradEntity.getCategoryName()));
+            output.add(new Category(categoryTradEntity.getCategory().getId(),categoryTradEntity.getCategoryName()));
         }
 
         return output;

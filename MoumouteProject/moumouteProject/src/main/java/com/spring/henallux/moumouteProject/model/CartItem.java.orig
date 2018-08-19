@@ -1,0 +1,115 @@
+package com.spring.henallux.moumouteProject.model;
+
+
+public class CartItem
+{
+<<<<<<< HEAD
+    private int itemId;
+    private String itemName;
+    private double itemPrice;
+    private int quantity;
+
+    public CartItem() {}
+
+    public CartItem(int itemId) {
+        this(itemId, 1);
+    }
+
+    public CartItem(int itemId, int quantity) {
+        this.itemId = itemId;
+        this.quantity = quantity;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public double getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
+=======
+    public CartItem(int numLine, double EVATPrice, double VATRate, int quantity, String pictureLink, String wigName) {
+        this.numLine = numLine;
+        this.EVATPrice = EVATPrice;
+        this.VATRate = VATRate;
+        this.quantity = quantity;
+        this.pictureLink = pictureLink;
+        this.wigName = wigName;
+    }
+
+    public int getNumLine() {
+        return numLine;
+    }
+
+    public void setNumLine(int numLine) {
+        this.numLine = numLine;
+    }
+
+    private int numLine;
+    private double EVATPrice;
+    private double VATRate;
+    private int quantity;
+    private String pictureLink;
+    private String wigName;
+
+
+
+    public double getEVATPrice() {
+        return EVATPrice;
+    }
+
+    public void setEVATPrice(double EVATPrice) {
+        this.EVATPrice = EVATPrice;
+    }
+
+    public double getVATRate() {
+        return VATRate;
+    }
+
+    public void setVATRate(double VATRate) {
+        this.VATRate = VATRate;
+>>>>>>> 49139a4b4030717b130412da803e98ebc626f9f7
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+<<<<<<< HEAD
+=======
+
+    public String getPictureLink() {
+        return pictureLink;
+    }
+
+    public void setPictureLink(String pictureLink) {
+        this.pictureLink = pictureLink;
+    }
+
+    public String getWigName() {
+        return wigName;
+    }
+
+    public void setWigName(String wigName) {
+        this.wigName = wigName;
+    }
+>>>>>>> 49139a4b4030717b130412da803e98ebc626f9f7
+}
