@@ -3,5 +3,5 @@ server:
   contextPath: /moumoute
 spring:
   datasource:
-    password: codo
+    password: 77Secret77
     url: jdbc:mysql://localhost:3306/moumoute?user=root
