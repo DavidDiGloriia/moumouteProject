@@ -34,7 +34,7 @@ public class PaymentController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String payment(Model model, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String payment(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         model.addAttribute("itemToSearch", new SearchWigForm());

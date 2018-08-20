@@ -44,7 +44,7 @@ public class RegisterController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String register(Model model, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String register(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         model.addAttribute("user", new UserRegisterForm());
         model.addAttribute("itemToSearch", new SearchWigForm());
@@ -54,7 +54,7 @@ public class RegisterController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String getFormData(Model model, @Valid @ModelAttribute(value = "user")UserRegisterForm userRegisterForm, final BindingResult errors, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String getFormData(Model model, @Valid @ModelAttribute(value = "user")UserRegisterForm userRegisterForm, final BindingResult errors, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         if(!errors.hasErrors())
         {
