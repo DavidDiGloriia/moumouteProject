@@ -60,7 +60,7 @@ public class UserEntity implements UserDetails {
     private Boolean enabled;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Collection<OrderTicketEntity> OrderTickets;
+    private Collection<SaleEntity> sales;
 
 
 
@@ -199,11 +199,11 @@ public class UserEntity implements UserDetails {
     }
 
 
-    public Collection<OrderTicketEntity> getOrderTickets() {
-        return OrderTickets;
+    public Collection<SaleEntity> getSales() {
+        return sales;
     }
 
-    public void setOrderTickets(Collection<OrderTicketEntity> orderTickets) {
-        OrderTickets = orderTickets;
+    public void setSales(Collection<SaleEntity> sales) {
+        this.sales = sales;
     }
 }

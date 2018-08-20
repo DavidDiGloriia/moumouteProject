@@ -6,22 +6,22 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-@Table(name = "orderticket")
-public class OrderTicketEntity
+@Table(name = "sale")
+public class SaleEntity
 {
     @Id
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "orderdate")
-    private Date orderDate;
+    @Column(name = "saledate")
+    private Date saleDate;
 
     @JoinColumn(name = "username", referencedColumnName = "username")
     @ManyToOne
     private UserEntity user;
 
-    @OneToMany(mappedBy = "orderTicket", fetch = FetchType.LAZY)
-    private Collection<OrderLineEntity> OrderLines;
+    @OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
+    private Collection<SaleLineEntity> saleLines;
 
     public Integer getId() {
         return id;
@@ -31,12 +31,12 @@ public class OrderTicketEntity
         this.id = id;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public Date getSaleDate() {
+        return saleDate;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
 
     public UserEntity getUser() {
@@ -47,11 +47,11 @@ public class OrderTicketEntity
         this.user = user;
     }
 
-    public Collection<OrderLineEntity> getOrderLines() {
-        return OrderLines;
+    public Collection<SaleLineEntity> getSaleLines() {
+        return saleLines;
     }
 
-    public void setOrderLines(Collection<OrderLineEntity> orderLines) {
-        OrderLines = orderLines;
+    public void setSaleLines(Collection<SaleLineEntity> saleLines) {
+        this.saleLines = saleLines;
     }
 }

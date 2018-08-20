@@ -19,6 +19,8 @@
             <input type="hidden" name="item_name" value="On peut mettre une arrayList de string ici">
             <%--</c:forEach>--%>
             <input type="hidden" name="currency_code" value="EUR">
+            <input type="hidden" name="return" value="http://localhost:8082/moumoute/payment/paymentSucceed">
+            <input type="hidden" name="cancel_return" value="http://localhost:8082/moumoute/home">
             <button type="submit"><spring:message code="payment.start_paypal"/> </button>
         </form>
     </div>

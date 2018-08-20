@@ -4,8 +4,8 @@ package com.spring.henallux.moumouteProject.dataAccess.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "orderline")
-public class OrderLineEntity
+@Table(name = "saleline")
+public class SaleLineEntity
 {
     @Id
     @Column(name = "id")
@@ -20,9 +20,9 @@ public class OrderLineEntity
     @Column(name = "unitpriceevat")
     private double unitPriceEVAT;
 
-    @JoinColumn(name = "orderid", referencedColumnName = "id")
+    @JoinColumn(name = "saleid", referencedColumnName = "id")
     @ManyToOne
-    private OrderTicketEntity orderTicket;
+    private SaleEntity sale;
 
     @JoinColumn(name = "wigid", referencedColumnName = "id")
     @ManyToOne
@@ -60,12 +60,12 @@ public class OrderLineEntity
         this.unitPriceEVAT = unitPriceEVAT;
     }
 
-    public OrderTicketEntity getOrderTicket() {
-        return orderTicket;
+    public SaleEntity getSale() {
+        return sale;
     }
 
-    public void setOrderTicket(OrderTicketEntity orderTicket) {
-        this.orderTicket = orderTicket;
+    public void setSale(SaleEntity sale) {
+        this.sale = sale;
     }
 
     public WigEntity getWig() {

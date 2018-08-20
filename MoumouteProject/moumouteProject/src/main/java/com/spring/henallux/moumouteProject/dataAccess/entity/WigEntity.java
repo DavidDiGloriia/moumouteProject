@@ -25,7 +25,7 @@ public class WigEntity
     private String pictureLink;
 
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
-    private Collection<OrderLineEntity> orderLines;
+    private Collection<SaleLineEntity> saleLines;
 
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrad;
@@ -74,12 +74,12 @@ public class WigEntity
         this.pictureLink = pictureLink;
     }
 
-    public Collection<OrderLineEntity> getOrderLines() {
-        return orderLines;
+    public Collection<SaleLineEntity> getSaleLines() {
+        return saleLines;
     }
 
-    public void setOrderLines(Collection<OrderLineEntity> orderLines) {
-        this.orderLines = orderLines;
+    public void setSaleLines(Collection<SaleLineEntity> saleLines) {
+        this.saleLines = saleLines;
     }
 
     public Collection<WigTradEntity> getWigTrad() {
