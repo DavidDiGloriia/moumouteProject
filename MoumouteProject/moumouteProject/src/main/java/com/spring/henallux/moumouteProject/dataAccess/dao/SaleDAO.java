@@ -21,7 +21,7 @@ public class SaleDAO
         this.saleLineDAO = saleLineDAO;
     }
 
-    public void saveSale(UserEntity userEntity, HashMap<Long,CartItem> cart)
+    public void saveSale(UserEntity userEntity, HashMap<Integer,CartItem> cart)
     {
 
     }

@@ -1,6 +1,7 @@
 package com.spring.henallux.moumouteProject.controller;
 
 
+import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.moumouteProject.model.CartItem;
 import com.spring.henallux.moumouteProject.model.Constants;
@@ -21,11 +22,13 @@ import java.util.Locale;
 public class LoginController
 {
     private final MessageSource messageSource;
+    private CategoryDAO categoryDAO;
 
     @Autowired
-    public LoginController(MessageSource messageSource)
+    public LoginController(MessageSource messageSource, CategoryDAO categoryDAO)
     {
         this.messageSource = messageSource;
+        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CART)
@@ -41,6 +44,7 @@ public class LoginController
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         model.addAttribute("cartSize", cart.size());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:login";
     }
 }

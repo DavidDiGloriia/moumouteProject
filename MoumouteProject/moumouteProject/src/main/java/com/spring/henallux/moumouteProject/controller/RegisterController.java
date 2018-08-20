@@ -1,6 +1,7 @@
 package com.spring.henallux.moumouteProject.controller;
 
 
+import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.UserDAO;
 import com.spring.henallux.moumouteProject.dataAccess.util.ProviderCenter;
 import com.spring.henallux.moumouteProject.model.CartItem;
@@ -27,15 +28,15 @@ import java.util.Locale;
 public class RegisterController
 {
     private UserDAO userDAO;
-    private ProviderCenter providerCenter;
+    private CategoryDAO categoryDAO;
     private final MessageSource messageSource;
 
     @Autowired
-    public RegisterController(UserDAO userDAO, ProviderCenter providerCenter, MessageSource messageSource)
+    public RegisterController(UserDAO userDAO, MessageSource messageSource, CategoryDAO categoryDAO)
     {
         this.userDAO = userDAO;
-        this.providerCenter = providerCenter;
         this.messageSource = messageSource;
+        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CART)
@@ -50,12 +51,18 @@ public class RegisterController
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         model.addAttribute("cartSize", cart.size());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String getFormData(Model model, @Valid @ModelAttribute(value = "user")UserRegisterForm userRegisterForm, final BindingResult errors, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
+        model.addAttribute("itemToSearch", new SearchWigForm());
+        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
+        model.addAttribute("cartSize", cart.size());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
+
         if(!errors.hasErrors())
         {
             boolean otherError = false;
@@ -91,19 +98,12 @@ public class RegisterController
                     return "redirect:/login";
                 } else {
                     model.addAttribute("errorOccurred", true);
-                    model.addAttribute("itemToSearch", new SearchWigForm());
-                    model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-                    model.addAttribute("cartSize", cart.size());
                     return "integrated:register";
                 }
-
             }
         }
         else
         {
-            model.addAttribute("itemToSearch", new SearchWigForm());
-            model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-            model.addAttribute("cartSize", cart.size());
             return "integrated:register";
         }
     }

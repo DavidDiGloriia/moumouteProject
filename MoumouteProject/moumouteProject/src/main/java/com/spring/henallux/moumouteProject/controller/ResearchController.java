@@ -38,12 +38,13 @@ public class ResearchController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         // TODO : Méthode à modifier / supprimer
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         model.addAttribute("cartSize", cart.size());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:itemsList";
     }
 
@@ -53,8 +54,7 @@ public class ResearchController {
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title","Résultat de la recherche");
-        System.out.println(Integer.parseInt(form.getCategory()));
-        model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(Integer.parseInt(form.getCategory()),"FR"));
+        model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(Integer.parseInt(form.getCategory()), locale.getLanguage()));
         model.addAttribute("cartSize", cart.size());
         return "integrated:itemsList";
     }

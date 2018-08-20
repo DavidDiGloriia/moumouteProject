@@ -1,5 +1,6 @@
 package com.spring.henallux.moumouteProject.controller;
 
+import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.WigDAO;
 import com.spring.henallux.moumouteProject.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,15 @@ import java.util.Map;
 public class CartController
 {
     private final MessageSource messageSource;
+    private CategoryDAO categoryDAO;
     private WigDAO wigDAO;
 
     @Autowired
-    public CartController(MessageSource messageSource, WigDAO wigDAO)
+    public CartController(MessageSource messageSource, WigDAO wigDAO, CategoryDAO categoryDAO)
     {
         this.messageSource = messageSource;
         this.wigDAO = wigDAO;
+        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CART)
@@ -42,20 +45,14 @@ public class CartController
         model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("cartSize", cart.size());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:cart";
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/deleteItemFromCart")
-    public String deleteItemFromCart(@RequestParam(value="itemId")int idItem,HashMap<Integer, CartItem> cart)
+    public String deleteItemFromCart(@RequestParam(value="itemId")int idItem, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
     {
-
-            System.out.println("CLE : "+idItem );
-            System.out.println( cart );
-
-            System.out.println(cart.containsKey(new Integer(idItem)));
-
-
-        cart.remove(new Integer(idItem));
+        cart.remove(idItem);
         return "redirect:/cart";
     }
 

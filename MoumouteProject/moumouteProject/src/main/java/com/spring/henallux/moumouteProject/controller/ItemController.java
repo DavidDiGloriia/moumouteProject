@@ -1,5 +1,6 @@
 package com.spring.henallux.moumouteProject.controller;
 
+import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.WigDAO;
 import com.spring.henallux.moumouteProject.model.CartItem;
 import com.spring.henallux.moumouteProject.model.Constants;
@@ -19,11 +20,13 @@ import java.util.Locale;
 public class ItemController {
 
     private WigDAO wigDAO;
+    private CategoryDAO categoryDAO;
 
     @Autowired
-    ItemController(WigDAO wigDao)
+    ItemController(WigDAO wigDao, CategoryDAO categoryDAO)
     {
         this.wigDAO = wigDao;
+        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CART)
@@ -39,20 +42,16 @@ public class ItemController {
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("title","");
         model.addAttribute("cartSize", cart.size());
-        model.addAttribute("item",wigDAO.getWigFromId(idItem,"FR"));
+        model.addAttribute("item",wigDAO.getWigFromId(idItem,locale.getLanguage()));
         model.addAttribute("itemToAdd", new CartItem());
+        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:itemDetail";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/AddToCart")
-    public String addItemToCart(Model model, @ModelAttribute(value="itemToAdd")CartItem form, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    @RequestMapping(method = RequestMethod.POST)
+    public String addItemToCart(@ModelAttribute(value="itemToAdd")CartItem itemToAdd, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
     {
-
-        cart.put(form.getItemId(), form);
+        cart.put(itemToAdd.getItemId(), itemToAdd);
         return "redirect:/home";
     }
-
-
-
-
 }

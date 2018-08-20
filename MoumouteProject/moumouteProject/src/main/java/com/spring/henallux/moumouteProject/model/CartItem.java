@@ -4,8 +4,6 @@ package com.spring.henallux.moumouteProject.model;
 public class CartItem
 {
     private int itemId;
-    private String itemName;
-    private double itemPrice;
     private int quantity;
 
     public CartItem() {}
@@ -25,22 +23,6 @@ public class CartItem
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public double getItemPrice() {
-        return itemPrice;
-    }
-
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
     }
 
     public int getQuantity() {
