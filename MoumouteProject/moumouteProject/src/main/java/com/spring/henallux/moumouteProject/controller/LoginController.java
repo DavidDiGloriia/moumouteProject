@@ -34,7 +34,7 @@ public class LoginController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model, @RequestParam(required = false)boolean isError, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String login(Model model, @RequestParam(required = false)boolean isError, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("errorMessage", isError);

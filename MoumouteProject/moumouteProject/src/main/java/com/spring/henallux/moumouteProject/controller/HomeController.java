@@ -36,7 +36,7 @@ public class HomeController
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new SearchWigForm());

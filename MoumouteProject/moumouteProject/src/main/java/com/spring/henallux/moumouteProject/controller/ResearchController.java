@@ -48,7 +48,7 @@ public class ResearchController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form, @ModelAttribute(value = Constants.CART)HashMap<Long, CartItem> cart, Locale locale)
+    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form, @ModelAttribute(value = Constants.CART)HashMap<Integer,CartItem> cart, Locale locale)
     {
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("itemToSearch", new SearchWigForm());
