@@ -20,7 +20,6 @@ public class ProviderCenter
         wigModel.setId(wigEntity.getId());
         wigModel.setEVATPrice(wigEntity.getEVATPrice());
         wigModel.setVATRate(wigEntity.getVATRate());
-        wigModel.setMan(wigEntity.isMan());
         wigModel.setPictureLink(wigEntity.getPictureLink());
         wigModel.setWigName(wigTradEntity.getWigName());
         wigModel.setDescription(wigTradEntity.getDescription());

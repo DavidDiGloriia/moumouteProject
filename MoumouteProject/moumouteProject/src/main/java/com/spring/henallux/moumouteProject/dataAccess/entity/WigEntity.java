@@ -18,9 +18,6 @@ public class WigEntity
     @Column(name = "vatrate")
     private double VATRate;
 
-    @Column(name = "isman")
-    private boolean isMan;
-
     @Column(name = "picturelink")
     private String pictureLink;
 
@@ -29,6 +26,9 @@ public class WigEntity
 
     @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
     private Collection<WigTradEntity> wigTrad;
+
+    @OneToMany(mappedBy = "wig", fetch = FetchType.LAZY)
+    private Collection<PromotionEntity> promotions;
 
     @JoinColumn(name = "categoryid", referencedColumnName = "id")
     @ManyToOne
@@ -58,14 +58,6 @@ public class WigEntity
         this.VATRate = VATRate;
     }
 
-    public boolean isMan() {
-        return isMan;
-    }
-
-    public void setMan(boolean man) {
-        isMan = man;
-    }
-
     public String getPictureLink() {
         return pictureLink;
     }
@@ -88,6 +80,14 @@ public class WigEntity
 
     public void setWigTrad(Collection<WigTradEntity> wigTrad) {
         this.wigTrad = wigTrad;
+    }
+
+    public Collection<PromotionEntity> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(Collection<PromotionEntity> promotions) {
+        this.promotions = promotions;
     }
 
     public CategoryEntity getCategory() {

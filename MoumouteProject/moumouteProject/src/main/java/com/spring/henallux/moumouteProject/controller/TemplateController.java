@@ -42,13 +42,13 @@ public class TemplateController extends HandlerInterceptorAdapter {
     }
 
     @ModelAttribute
-    public void handleRequest(Model model, Locale locale, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart) {
-
+    public void handleRequest(Model model, Locale locale, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
+    {
         //populating request URI in the model
         model.addAttribute("categories", categoryDAO.getAllCategories(locale.getLanguage()));
         model.addAttribute("itemToSearch", new SearchWigForm());
         model.addAttribute("cartSize", cart.size());
-
+        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
     }
 
 }

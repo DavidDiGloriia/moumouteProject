@@ -44,6 +44,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "phonenumber")
+    private String phoneNumber;
+
     @Column(name = "authorities")
     private String authorities;
 
@@ -61,9 +64,6 @@ public class UserEntity implements UserDetails {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Collection<SaleEntity> sales;
-
-
-
 
 
     @Override
@@ -198,6 +198,13 @@ public class UserEntity implements UserDetails {
         this.country = country;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Collection<SaleEntity> getSales() {
         return sales;

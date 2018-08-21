@@ -22,7 +22,7 @@ public class CartController
     private WigDAO wigDAO;
 
     @Autowired
-    public CartController(MessageSource messageSource, WigDAO wigDAO)
+    public CartController(WigDAO wigDAO)
     {
         this.wigDAO = wigDAO;
     }

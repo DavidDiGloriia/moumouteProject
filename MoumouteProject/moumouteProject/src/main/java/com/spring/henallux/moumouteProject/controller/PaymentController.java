@@ -28,7 +28,7 @@ public class PaymentController
     private SaleDAO saleDAO;
 
     @Autowired
-    public PaymentController(MessageSource messageSource, SaleDAO saleDAO)
+    public PaymentController(SaleDAO saleDAO)
     {
         this.saleDAO = saleDAO;
     }

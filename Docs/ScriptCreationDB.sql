@@ -10,6 +10,7 @@ Create table User (
     postalCode numeric(5) not null check (postalCode >= 1000),
     city varchar(60) not null,
     country varchar(50) not null,
+	phoneNumber varchar(15),
     authorities varchar(50),
     non_Expired boolean not null,
     non_Locked boolean not null,
@@ -17,11 +18,9 @@ Create table User (
     enabled boolean not null
 );
 
-
 Create table Language (
 	code varchar(10) primary key
 );
-
 
 Create table Category (
 	id int primary key
@@ -40,7 +39,6 @@ Create table Wig (
 	id int primary key,
     EVATPrice decimal(15,2) not null,
     VATrate decimal(4,2) not null check (VATrate > 0),
-    isMan boolean not null,
 	pictureLink varchar(255),
     categoryId int not null,
     foreign key (categoryId) references Category(id)
@@ -55,6 +53,14 @@ Create table WigTrad (
     foreign key (wigId) references Wig(id)
 );
 
+Create table Promotion(
+    id int primary key, 
+    endDate DATETIME(6) not null,
+    startDate DATETIME(6) not null,
+    percRed decimal(5.2) not null ,
+    wigId int not null,
+    foreign key(wigId) references Wig(id)
+);
 
 Create table Sale (
 	id int primary key auto_increment,

@@ -5,7 +5,6 @@ public class Wig
     private int id;
     private double EVATPrice;
     private double VATRate;
-    private boolean isMan;
     private String pictureLink;
     private String wigName;
     private String description;
@@ -14,11 +13,10 @@ public class Wig
     public Wig()
     {}
 
-    public Wig(int id, double EVATPrice, double VATRate, boolean isMan, String pictureLink, String wigName, String description, int categoryId) {
+    public Wig(int id, double EVATPrice, double VATRate, String pictureLink, String wigName, String description, int categoryId) {
         this.id = id;
         this.EVATPrice = EVATPrice;
         this.VATRate = VATRate;
-        this.isMan = isMan;
         this.pictureLink = pictureLink;
         this.wigName = wigName;
         this.description = description;
@@ -47,14 +45,6 @@ public class Wig
 
     public void setVATRate(double VATRate) {
         this.VATRate = VATRate;
-    }
-
-    public boolean isMan() {
-        return isMan;
-    }
-
-    public void setMan(boolean man) {
-        isMan = man;
     }
 
     public String getPictureLink() {
