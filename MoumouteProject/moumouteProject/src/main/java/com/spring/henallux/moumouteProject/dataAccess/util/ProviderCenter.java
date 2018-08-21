@@ -1,20 +1,18 @@
 package com.spring.henallux.moumouteProject.dataAccess.util;
 
-import com.spring.henallux.moumouteProject.dataAccess.entity.LanguageEntity;
-import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
-import com.spring.henallux.moumouteProject.dataAccess.entity.WigEntity;
-import com.spring.henallux.moumouteProject.dataAccess.entity.WigTradEntity;
+import com.spring.henallux.moumouteProject.dataAccess.entity.*;
 import com.spring.henallux.moumouteProject.model.Language;
 import com.spring.henallux.moumouteProject.model.User;
 import com.spring.henallux.moumouteProject.model.UserRegisterForm;
 import com.spring.henallux.moumouteProject.model.Wig;
+import com.sun.istack.internal.Nullable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProviderCenter
 {
-    public Wig wigEntityAndWigTradEntityToWigModel(WigEntity wigEntity, WigTradEntity wigTradEntity)
+    public Wig wigEntityAndWigTradEntityToWigModel(WigEntity wigEntity, WigTradEntity wigTradEntity, @Nullable PromotionEntity promotionEntity)
     {
         Wig wigModel = new Wig();
         wigModel.setId(wigEntity.getId());
@@ -24,6 +22,11 @@ public class ProviderCenter
         wigModel.setWigName(wigTradEntity.getWigName());
         wigModel.setDescription(wigTradEntity.getDescription());
         wigModel.setCategoryId(wigEntity.getCategory().getId());
+        if(promotionEntity != null)
+        {
+            wigModel.setPercRed(promotionEntity.getPercRed());
+            wigModel.setEndDateRed(promotionEntity.getEndDate());
+        }
         return wigModel;
     }
 
