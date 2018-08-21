@@ -65,7 +65,7 @@
                                 </c:forEach>
 
                                 <li class="divider dropdown-item"></li>
-                                <li class="dropdown-item"><a href="#0">Anything</a>
+                                <li class="dropdown-item"><a href="#all">Anything</a>
                             </ul>
                         </div>
 

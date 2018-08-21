@@ -15,5 +15,4 @@ public interface WigRepository extends JpaRepository<WigEntity, Integer>
     public ArrayList<WigEntity> findByCategoryId(Integer categoryId);
     public WigEntity findById(Integer id);
     public ArrayList<WigEntity> findAll();
-
 }

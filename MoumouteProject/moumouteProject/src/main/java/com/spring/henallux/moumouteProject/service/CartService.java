@@ -22,7 +22,7 @@ public class CartService
             cartItemDisplays.add(new CartItemDisplay(
                     entry.getValue().getItemId(),
                     wig.getWigName(),
-                    wig.getEVATPrice() * (1 + (wig.getVATRate()/100)),
+                    wig.getPromotion() == null ? wig.getEVATPrice() * (1 + (wig.getVATRate()/100)) : (wig.getEVATPrice() * (1 + (wig.getVATRate()/100))) * (1 - (wig.getPromotion().getPercRed() / 100)),
                     entry.getValue().getQuantity(),
                     wig.getPictureLink()
             ));

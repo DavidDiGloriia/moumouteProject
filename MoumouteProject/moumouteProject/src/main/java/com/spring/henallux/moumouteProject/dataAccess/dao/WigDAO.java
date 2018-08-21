@@ -33,48 +33,29 @@ public class WigDAO
         this.providerCenter = providerCenter;
     }
 
-    public Wig getWigFromId(int id, String lang)
-    {
-        WigEntity wigEntity = wigRepository.findOne(id);
-        WigTradEntity wigTradEntity = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
-        PromotionEntity promotionEntity = promotionRepository.findFirstByIdAndEndDateLessThanEqual(wigEntity.getId(), new Date());
-        return providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, wigTradEntity,promotionEntity);
-    }
-
-    public ArrayList<Wig> getAllWigFromCategoryAndName(String category, String lang, String name) {
-
-        ArrayList<WigEntity> wigEntities = new ArrayList<>();
-        ArrayList<Wig> wigs = new ArrayList<Wig>();
-
-        if(category.contains("all"))
-        {
-            wigEntities = wigRepository.findAll();
-        }
-        else
-        {
-            wigEntities = wigRepository.findByCategoryId(Integer.parseInt(category));
-        }
-
-        WigTradEntity tempWigTrad;
-
-
-        for(WigEntity wigEntity : wigEntities)
-        {
-            tempWigTrad = wigTradRepository.findByLanguageCodeAndWigIdAndWigNameContaining(lang, wigEntity.getId(),name+"%");
-            PromotionEntity promotionEntity = promotionRepository.findFirstByIdAndEndDateLessThanEqual(wigEntity.getId(), new Date());
-            if(tempWigTrad != null)  wigs.add(providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, tempWigTrad, promotionEntity));
-        }
-
-        return wigs;
-    }
 
     public Wig getWigById(int id, String lang)
     {
         WigEntity wigEntity = wigRepository.findById(id);
         WigTradEntity wigTradEntity = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
-        PromotionEntity promotionEntity = promotionRepository.findFirstByIdAndEndDateLessThanEqual(wigEntity.getId(), new Date());
-
-
+        PromotionEntity promotionEntity = promotionRepository.findFirstByIdAndStartDateGreaterThanAndEndDateLessThan(wigEntity.getId(), new Date(), new Date());
         return providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, wigTradEntity, promotionEntity);
+    }
+
+    public ArrayList<Wig> getAllWigFromCategoryAndName(String category, String lang, String name) {
+
+        ArrayList<WigEntity> wigEntities = category.equals("all") ? wigRepository.findAll() : wigRepository.findByCategoryId(Integer.parseInt(category));
+
+        ArrayList<Wig> wigs = new ArrayList<Wig>();
+        WigTradEntity tempWigTrad;
+        for(WigEntity wigEntity : wigEntities)
+        {
+            tempWigTrad = wigTradRepository.findByLanguageCodeAndWigIdAndWigNameContaining(lang, wigEntity.getId(),name+"%");
+            if(tempWigTrad != null) {
+                PromotionEntity promotionEntity = promotionRepository.findFirstByIdAndStartDateGreaterThanAndEndDateLessThan(wigEntity.getId(), new Date(), new Date());
+                wigs.add(providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, tempWigTrad, promotionEntity));
+            }
+        }
+        return wigs;
     }
 }

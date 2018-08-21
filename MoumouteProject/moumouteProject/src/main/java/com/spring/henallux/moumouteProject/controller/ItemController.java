@@ -30,7 +30,7 @@ public class ItemController {
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @RequestParam(value="itemId")int idItem, Locale locale)
     {
-        model.addAttribute("item",wigDAO.getWigFromId(idItem,locale.getLanguage()));
+        model.addAttribute("item",wigDAO.getWigById(idItem,locale.getLanguage()));
         model.addAttribute("itemToAdd", new CartItem());
 
         return "integrated:itemDetail";

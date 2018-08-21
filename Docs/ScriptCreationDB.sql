@@ -71,9 +71,8 @@ Create table Sale (
 
 Create table SaleLine (
 	id int  primary key auto_increment,
-	lineNumber int not null,
     quantity int not null check (quantity > 0),
-    unitPriceEVAT decimal(15,2)  not null,
+    unitPrice decimal(15,2)  not null,
     saleId int not null,
     wigId int not null,
     foreign key (saleId) references Sale(id),
