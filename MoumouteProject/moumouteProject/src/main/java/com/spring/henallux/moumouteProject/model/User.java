@@ -11,6 +11,7 @@ public class User
     private int postalCode;
     private String city;
     private String country;
+    private String phoneNumber;
     private String authorities;
     private Boolean non_Expired;
     private Boolean non_Locked;
@@ -89,6 +90,14 @@ public class User
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAuthorities() {

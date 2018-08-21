@@ -3,7 +3,6 @@ package com.spring.henallux.moumouteProject.dataAccess.dao;
 import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.moumouteProject.dataAccess.repository.UserRepository;
 import com.spring.henallux.moumouteProject.dataAccess.util.ProviderCenter;
-import com.spring.henallux.moumouteProject.model.User;
 import com.spring.henallux.moumouteProject.model.UserRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

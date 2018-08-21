@@ -1,6 +1,8 @@
 package com.spring.henallux.moumouteProject.dataAccess.dao;
 
 import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
+import com.spring.henallux.moumouteProject.dataAccess.repository.SaleLineRepository;
+import com.spring.henallux.moumouteProject.dataAccess.repository.SaleRepository;
 import com.spring.henallux.moumouteProject.model.CartItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,17 @@ import java.util.HashMap;
 @Transactional
 public class SaleDAO
 {
-    private SaleLineDAO saleLineDAO;
+
+    private WigDAO wigDAO;
+    private SaleRepository saleRepository;
+    private SaleLineRepository saleLineRepository;
 
     @Autowired
-    public SaleDAO(SaleLineDAO saleLineDAO)
+    public SaleDAO(WigDAO wigDAO, SaleRepository saleRepository, SaleLineRepository saleLineRepository)
     {
-        this.saleLineDAO = saleLineDAO;
+        this.wigDAO = wigDAO;
+        this.saleRepository = saleRepository;
+        this.saleLineRepository = saleLineRepository;
     }
 
     public void saveSale(UserEntity userEntity, HashMap<Integer,CartItem> cart)

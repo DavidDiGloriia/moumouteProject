@@ -122,6 +122,13 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="<spring:url value="/about"/>">
+                                <i class="fa fa-info-circle"  style="color:white"></i>
+                                <spring:message code="about"/>
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <spring:message code="flagLanguage"/>

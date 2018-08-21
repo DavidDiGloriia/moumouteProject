@@ -49,6 +49,7 @@ public class ProviderCenter
         userEntity.setPostalCode(Integer.parseInt(userRegisterForm.getPostalCode()));
         userEntity.setCity(userRegisterForm.getCity());
         userEntity.setCountry(userRegisterForm.getCountry());
+        userEntity.setPhoneNumber(userRegisterForm.getPhoneNumber());
         return userEntity;
 
     }

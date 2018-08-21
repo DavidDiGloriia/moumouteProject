@@ -1,18 +1,15 @@
 package com.spring.henallux.moumouteProject.controller;
 
-import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.WigDAO;
 import com.spring.henallux.moumouteProject.model.*;
+import com.spring.henallux.moumouteProject.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/cart")
@@ -35,7 +32,7 @@ public class CartController
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
-        ArrayList<CartItemDisplay> cartItemDisplays =  getCartItemDisplayArray(cart,locale.getLanguage());
+        ArrayList<CartItemDisplay> cartItemDisplays = CartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
         model.addAttribute("cartItems", cartItemDisplays);
         return "integrated:cart";
     }
@@ -47,32 +44,10 @@ public class CartController
         return "redirect:/cart";
     }
 
-
-    private ArrayList<CartItemDisplay> getCartItemDisplayArray(HashMap<Integer, CartItem> cart, String lang)
-    {
-        ArrayList<CartItemDisplay> cartItemDisplays = new ArrayList<>();
-        Wig wig;
-        for(Map.Entry<Integer, CartItem> entry : cart.entrySet())
-        {
-            wig = wigDAO.getWigById(entry.getValue().getItemId(), lang);
-
-           cartItemDisplays.add(new CartItemDisplay(
-                   entry.getValue().getItemId(),
-                   wig.getWigName(),
-                   wig.getEVATPrice() * (1 + (wig.getVATRate()/100)),
-                   entry.getValue().getQuantity(),
-                   wig.getPictureLink()
-           ));
-        }
-        return cartItemDisplays;
-    }
-
     @RequestMapping(method = RequestMethod.POST, value="/addItemToCart")
     public String addItemToCart(@ModelAttribute(value="itemToAdd")CartItem itemToAdd, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
     {
         cart.put(itemToAdd.getItemId(), itemToAdd);
         return "redirect:/home";
     }
-
-
 }
