@@ -25,9 +25,9 @@ public class CategoryDAO {
         this.categoryTradRepository = categoryTradRepository;
     }
 
-    public ArrayList<Category> getAllCategories()
+    public ArrayList<Category> getAllCategories(String language)
     {
-        List<CategoryTradEntity> categoriesTradEntities = categoryTradRepository.findByLanguageCode("FR");
+        List<CategoryTradEntity> categoriesTradEntities = categoryTradRepository.findByLanguageCode(language);
 
 
         ArrayList<Category> output = new ArrayList<>();
@@ -40,4 +40,9 @@ public class CategoryDAO {
         return output;
 
     }
+
+
+
+
+
 }

@@ -12,5 +12,6 @@ import java.util.ArrayList;
 public interface WigTradRepository extends JpaRepository<WigTradEntity, Integer>
 {
     public WigTradEntity findByLanguageCodeAndWigId(String lang, Integer wigId);
+    public WigTradEntity findByLanguageCodeAndWigIdAndWigNameContaining(String lang, Integer wigId, String wigName);
 
 }

@@ -18,33 +18,15 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping(value = "/login")
-@SessionAttributes({Constants.CART})
 public class LoginController
 {
-    private final MessageSource messageSource;
-    private CategoryDAO categoryDAO;
-
-    @Autowired
-    public LoginController(MessageSource messageSource, CategoryDAO categoryDAO)
-    {
-        this.messageSource = messageSource;
-        this.categoryDAO = categoryDAO;
-    }
-
-    @ModelAttribute(Constants.CART)
-    public HashMap<Integer,CartItem> cart(){
-        return new HashMap<>();
-    }
-
     @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model, @RequestParam(required = false)boolean isError, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String login(Model model, @RequestParam(required = false)boolean isError)
     {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("errorMessage", isError);
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("cartSize", cart.size());
-        model.addAttribute("categories", categoryDAO.getAllCategories());
+
+
         return "integrated:login";
     }
 }

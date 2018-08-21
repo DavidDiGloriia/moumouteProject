@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Locale;
 
 @Controller
@@ -28,40 +27,26 @@ import java.util.Locale;
 public class RegisterController
 {
     private UserDAO userDAO;
-    private CategoryDAO categoryDAO;
-    private final MessageSource messageSource;
+
 
     @Autowired
-    public RegisterController(UserDAO userDAO, MessageSource messageSource, CategoryDAO categoryDAO)
+    public RegisterController(UserDAO userDAO)
     {
         this.userDAO = userDAO;
-        this.messageSource = messageSource;
-        this.categoryDAO = categoryDAO;
     }
 
-    @ModelAttribute(Constants.CART)
-    public HashMap<Integer,CartItem> cart(){
-        return new HashMap<>();
-    }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String register(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String register(Model model)
     {
         model.addAttribute("user", new UserRegisterForm());
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("cartSize", cart.size());
-        model.addAttribute("categories", categoryDAO.getAllCategories());
+
         return "integrated:register";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String getFormData(Model model, @Valid @ModelAttribute(value = "user")UserRegisterForm userRegisterForm, final BindingResult errors, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String getFormData(Model model, @Valid @ModelAttribute(value = "user")UserRegisterForm userRegisterForm, final BindingResult errors)
     {
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("cartSize", cart.size());
-        model.addAttribute("categories", categoryDAO.getAllCategories());
 
         if(!errors.hasErrors())
         {

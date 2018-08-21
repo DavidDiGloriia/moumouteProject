@@ -34,13 +34,27 @@ public class WigDAO
         return providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, wigTradEntity);
     }
 
-    public ArrayList<Wig> getAllWigFromCategory(int categoryId, String lang) {
-        ArrayList<WigEntity> wigEntities = wigRepository.findByCategoryId(categoryId);
+    public ArrayList<Wig> getAllWigFromCategoryAndName(String category, String lang, String name) {
+
+        ArrayList<WigEntity> wigEntities = new ArrayList<>();
         ArrayList<Wig> wigs = new ArrayList<Wig>();
+
+        if(category.contains("all"))
+        {
+            wigEntities = wigRepository.findAll();
+        }
+        else
+        {
+            wigEntities = wigRepository.findByCategoryId(Integer.parseInt(category));
+        }
+
         WigTradEntity tempWigTrad;
-        for(WigEntity wigEntity : wigEntities) {
-            tempWigTrad = wigTradRepository.findByLanguageCodeAndWigId(lang, wigEntity.getId());
-            wigs.add(providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, tempWigTrad));
+
+
+        for(WigEntity wigEntity : wigEntities)
+        {
+            tempWigTrad = wigTradRepository.findByLanguageCodeAndWigIdAndWigNameContaining(lang, wigEntity.getId(),name+"%");
+            if(tempWigTrad != null)  wigs.add(providerCenter.wigEntityAndWigTradEntityToWigModel(wigEntity, tempWigTrad));
         }
 
         return wigs;

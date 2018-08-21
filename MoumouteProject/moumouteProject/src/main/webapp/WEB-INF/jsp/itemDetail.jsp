@@ -33,13 +33,13 @@
 
                             <form:form id="form"
                                        method="POST"
-                                       action="/moumoute/items"
+                                       action="/moumoute/cart/addItemToCart"
                                        modelAttribute="itemToAdd"
                                        style="width:100%">
 
                                 <form:input path="quantity" id="search_param"   type="number" />
                                 <form:input path="itemId" id="search_param" value="${item.id}"  type="hidden" />
-                                <form:button class="btn btn-secondary"><span class="glyphicon glyphicon-search"></span></form:button>
+                                <form:button class="btn btn-secondary"> <spring:message code="add_to_cart"/></span> <span class="glyphicon glyphicon-shopping-cart" style="border-left:3px"></form:button>
                             </form:form>
                         </div>
                     </div>

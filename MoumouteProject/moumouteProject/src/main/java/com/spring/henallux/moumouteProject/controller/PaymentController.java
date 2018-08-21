@@ -24,25 +24,18 @@ import java.util.Locale;
 @SessionAttributes({Constants.CART})
 public class PaymentController
 {
-    private final MessageSource messageSource;
-    private CategoryDAO categoryDAO;
+
     private SaleDAO saleDAO;
 
     @Autowired
-    public PaymentController(MessageSource messageSource, SaleDAO saleDAO, CategoryDAO categoryDAO)
+    public PaymentController(MessageSource messageSource, SaleDAO saleDAO)
     {
-        this.messageSource = messageSource;
         this.saleDAO = saleDAO;
-        this.categoryDAO = categoryDAO;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String payment(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String payment(Model model, Locale locale)
     {
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("categories", categoryDAO.getAllCategories());
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("cartSize", cart.size());
         return "integrated:payment";
     }
 

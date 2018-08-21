@@ -20,28 +20,9 @@ import java.util.Locale;
 @SessionAttributes({Constants.CART})
 public class HomeController
 {
-    private final MessageSource messageSource;
-    private CategoryDAO categoryDAO;
-
-    @Autowired
-    public HomeController(MessageSource messageSource, CategoryDAO categoryDAO)
-    {
-        this.categoryDAO = categoryDAO;
-        this.messageSource = messageSource;
-    }
-
-    @ModelAttribute(Constants.CART)
-    public HashMap<Integer,CartItem> cart(){
-        return new HashMap<>();
-    }
-
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String home()
     {
-        model.addAttribute("categories", categoryDAO.getAllCategories());
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("cartSize", cart.size());
         return "integrated:home";
     }
 

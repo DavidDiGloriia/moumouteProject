@@ -19,16 +19,12 @@ import java.util.Map;
 @SessionAttributes({Constants.CART})
 public class CartController
 {
-    private final MessageSource messageSource;
-    private CategoryDAO categoryDAO;
     private WigDAO wigDAO;
 
     @Autowired
-    public CartController(MessageSource messageSource, WigDAO wigDAO, CategoryDAO categoryDAO)
+    public CartController(MessageSource messageSource, WigDAO wigDAO)
     {
-        this.messageSource = messageSource;
         this.wigDAO = wigDAO;
-        this.categoryDAO = categoryDAO;
     }
 
     @ModelAttribute(Constants.CART)
@@ -40,12 +36,7 @@ public class CartController
     public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
         ArrayList<CartItemDisplay> cartItemDisplays =  getCartItemDisplayArray(cart,locale.getLanguage());
-
         model.addAttribute("cartItems", cartItemDisplays);
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("cartSize", cart.size());
-        model.addAttribute("categories", categoryDAO.getAllCategories());
         return "integrated:cart";
     }
 
@@ -74,6 +65,13 @@ public class CartController
            ));
         }
         return cartItemDisplays;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value="/addItemToCart")
+    public String addItemToCart(@ModelAttribute(value="itemToAdd")CartItem itemToAdd, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
+    {
+        cart.put(itemToAdd.getItemId(), itemToAdd);
+        return "redirect:/home";
     }
 
 

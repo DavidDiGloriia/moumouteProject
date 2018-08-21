@@ -20,42 +20,19 @@ import java.util.Locale;
 @SessionAttributes({Constants.CART})
 public class ResearchController {
 
-    private final MessageSource messageSource;
+
     private WigDAO wigDAO;
-    private CategoryDAO categoryDAO;
 
     @Autowired
-    public ResearchController(MessageSource messageSource, WigDAO wigDAO, CategoryDAO categoryDAO)
+    public ResearchController( WigDAO wigDAO)
     {
-        this.messageSource = messageSource;
         this.wigDAO   = wigDAO;
-        this.categoryDAO = categoryDAO;
-    }
-
-    @ModelAttribute(Constants.CART)
-    public HashMap<Integer,CartItem> cart(){
-        return new HashMap<>();
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
+    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form,Locale locale)
     {
-        // TODO : Méthode à modifier / supprimer
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title", messageSource.getMessage("home_title",null,locale));
-        model.addAttribute("cartSize", cart.size());
-        model.addAttribute("categories", categoryDAO.getAllCategories());
-        return "integrated:itemsList";
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form, @ModelAttribute(value = Constants.CART)HashMap<Integer,CartItem> cart, Locale locale)
-    {
-        model.addAttribute("categories", categoryDAO.getAllCategories());
-        model.addAttribute("itemToSearch", new SearchWigForm());
-        model.addAttribute("title","Résultat de la recherche");
-        model.addAttribute("itemsList", wigDAO.getAllWigFromCategory(Integer.parseInt(form.getCategory()), locale.getLanguage()));
-        model.addAttribute("cartSize", cart.size());
+        model.addAttribute("itemsList", wigDAO.getAllWigFromCategoryAndName(form.getCategory(), locale.getLanguage(), form.getWigName()));
         return "integrated:itemsList";
     }
 }

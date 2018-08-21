@@ -49,7 +49,7 @@
             <div class="row" style="width:50%;margin-left:1%">
 
                 <form:form id="form"
-                           method="POST"
+                           method="GET"
                            action="/moumoute/research"
                            modelAttribute="itemToSearch"
                            style="width:100%">
