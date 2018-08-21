@@ -1,5 +1,7 @@
 package com.spring.henallux.moumouteProject.model;
 
+import java.util.Date;
+
 public class Wig
 {
     private int id;
@@ -9,6 +11,13 @@ public class Wig
     private String wigName;
     private String description;
     private int categoryId;
+    private double percRed;
+    private Date   endDateRed;
+
+
+
+
+
 
     public Wig()
     {}
@@ -77,5 +86,22 @@ public class Wig
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public double getPercRed() {
+        return percRed;
+    }
+
+    public void setPercRed(double percRed) {
+        this.percRed = percRed;
+    }
+
+    public Date getEndDateRed() {
+        return endDateRed;
+    }
+
+    public void setEndDateRed(Date endDateRed) {
+        this.endDateRed = endDateRed;
+
     }
 }

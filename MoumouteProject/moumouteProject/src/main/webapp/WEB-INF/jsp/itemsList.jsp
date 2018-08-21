@@ -36,7 +36,17 @@
 
                         <div class="money">
 
-                            <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€
+                            <c:choose>
+                                <c:when test="${item.percRed > 0 }">
+                                    <s><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€</s>
+                                    <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${(item.EVATPrice*(1+(item.VATRate/100)))*(1- (item.percRed/100))}"/>€
+                                    ( -<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.percRed}"/>%)
+                                </c:when>
+                                <c:otherwise>
+                                    <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€
+
+                                </c:otherwise>
+                            </c:choose>
                        </div>
                     </h4>
                     <p class="card-text">${item.description}</p>
