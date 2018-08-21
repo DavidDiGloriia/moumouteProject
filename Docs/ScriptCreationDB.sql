@@ -80,14 +80,5 @@ Create table SaleLine (
     foreign key (wigId) references Wig(id)
 );
 
-Create table Promotion(
-	id int primary key, 
-	endDate    DATETIME(6) not null,
-	startDate  DATETIME(6) not null,
-	percRed  DECIMAL(5,2) not null ,
-	wigId int not null,
-	foreign key(wigId) references Wig(id)  	
-);
-
 ALTER TABLE CategoryTrad ADD CONSTRAINT uq_CategoryTrad UNIQUE(languageCode, categoryId);
 ALTER TABLE WigTrad ADD CONSTRAINT uq_WigTrad UNIQUE(languageCode, wigId);
