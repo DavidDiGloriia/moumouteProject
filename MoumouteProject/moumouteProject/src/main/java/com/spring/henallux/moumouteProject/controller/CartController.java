@@ -37,6 +37,7 @@ public class CartController
     {
         ArrayList<CartItemDisplay> cartItemDisplays =  getCartItemDisplayArray(cart,locale.getLanguage());
         model.addAttribute("cartItems", cartItemDisplays);
+        model.addAttribute("itemToUpdate", new ChangeQuantityItem());
         return "integrated:cart";
     }
 
@@ -72,6 +73,15 @@ public class CartController
     {
         cart.put(itemToAdd.getItemId(), itemToAdd);
         return "redirect:/home";
+    }
+
+
+    @RequestMapping(value="/updateItemQuantity",method=RequestMethod.POST)
+    public String updateItemQuantity(@ModelAttribute(value="itemToUpdate")ChangeQuantityItem changeQuantityItem,  @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart )
+    {
+        cart.get(changeQuantityItem.getIdItem()).setQuantity(changeQuantityItem.getNewQuantity());
+        return "redirect:/home";
+
     }
 
 
