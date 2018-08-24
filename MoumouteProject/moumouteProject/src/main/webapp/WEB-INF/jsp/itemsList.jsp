@@ -42,7 +42,7 @@
                                     ( -<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.promotion.percRed}"/>%)
                                 </c:when>
                                 <c:otherwise>
-                                    ${item.price}€€
+                                    ${item.price}€
                                 </c:otherwise>
                             </c:choose>
                        </div>
@@ -50,7 +50,7 @@
                     <p class="card-text">${item.description}</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    <small class="text-muted"></small>
                 </div>
             </div>
         </div>

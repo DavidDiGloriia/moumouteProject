@@ -36,7 +36,7 @@
                                         ( -<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.promotion.percRed}"/>%)
                                     </c:when>
                                     <c:otherwise>
-                                        ${item.price}€€
+                                        ${item.price}€
                                     </c:otherwise>
                                 </c:choose>
                             </div>

@@ -36,6 +36,7 @@ public class CartController
     {
         ArrayList<CartItemDisplay> cartItemDisplays = cartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
         model.addAttribute("cartItems", cartItemDisplays);
+        model.addAttribute("itemToUpdate", new ChangeQuantityItem());
         model.addAttribute("totalPrice", cartService.getTotalPrice(cartItemDisplays));
         model.addAttribute("totalQuantity", cartService.getTotalQuantity(cartItemDisplays));
         return "integrated:cart";
@@ -53,5 +54,14 @@ public class CartController
     {
         cart.put(itemToAdd.getItemId(), itemToAdd);
         return "redirect:/home";
+    }
+
+
+    @RequestMapping(value="/updateItemQuantity",method=RequestMethod.POST)
+    public String updateItemQuantity(@ModelAttribute(value="itemToUpdate")ChangeQuantityItem changeQuantityItem,  @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart )
+    {
+        cart.get(changeQuantityItem.getIdItem()).setQuantity(changeQuantityItem.getNewQuantity());
+        return "redirect:/home";
+
     }
 }
