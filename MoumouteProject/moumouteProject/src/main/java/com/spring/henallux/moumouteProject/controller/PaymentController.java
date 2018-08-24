@@ -1,16 +1,13 @@
 package com.spring.henallux.moumouteProject.controller;
 
-import com.spring.henallux.moumouteProject.dataAccess.dao.CategoryDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.SaleDAO;
 import com.spring.henallux.moumouteProject.dataAccess.dao.WigDAO;
 import com.spring.henallux.moumouteProject.dataAccess.entity.UserEntity;
 import com.spring.henallux.moumouteProject.model.CartItem;
 import com.spring.henallux.moumouteProject.model.CartItemDisplay;
 import com.spring.henallux.moumouteProject.model.Constants;
-import com.spring.henallux.moumouteProject.model.SearchWigForm;
 import com.spring.henallux.moumouteProject.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,28 +28,27 @@ public class PaymentController
 
     private SaleDAO saleDAO;
     private WigDAO wigDAO;
+    private CartService cartService;
 
     @Autowired
-    public PaymentController(SaleDAO saleDAO, WigDAO wigDAO)
+    public PaymentController(SaleDAO saleDAO, WigDAO wigDAO, CartService cartService)
     {
         this.saleDAO = saleDAO;
         this.wigDAO = wigDAO;
+        this.cartService = cartService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String payment(Model model, Locale locale, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart)
     {
-        ArrayList<CartItemDisplay> cartItemDisplays = CartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
+        ArrayList<CartItemDisplay> cartItemDisplays = cartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
         ArrayList<String> itemLabels = new ArrayList<>();
-        double totalPrice = 0;
-        for(CartItemDisplay cartItemDisplay : cartItemDisplays)
-        {
+        for(CartItemDisplay cartItemDisplay : cartItemDisplays) {
             itemLabels.add(cartItemDisplay.getItemName());
-            totalPrice += cartItemDisplay.getItemPrice() * cartItemDisplay.getQuantity();
         }
 
         model.addAttribute("itemsLabel", itemLabels);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("totalPrice", cartService.getTotalPrice(cartItemDisplays));
         return "integrated:payment";
     }
 

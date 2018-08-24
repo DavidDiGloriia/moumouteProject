@@ -90,4 +90,12 @@ public class Wig
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    public double getPrice() {
+        return Math.round((this.getEVATPrice() * (1 + (this.getVATRate()/100))) * 100.0) / 100.0;
+    }
+
+    public double getReductedPrice() {
+        return Math.round(((1 - (this.getPromotion().getPercRed()/100)) * this.getPrice()) * 100.0) / 100.0;
+    }
 }

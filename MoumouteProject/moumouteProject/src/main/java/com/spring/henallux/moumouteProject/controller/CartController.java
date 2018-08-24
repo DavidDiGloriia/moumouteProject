@@ -17,11 +17,13 @@ import java.util.Locale;
 public class CartController
 {
     private WigDAO wigDAO;
+    private CartService cartService;
 
     @Autowired
-    public CartController(WigDAO wigDAO)
+    public CartController(WigDAO wigDAO, CartService cartService)
     {
         this.wigDAO = wigDAO;
+        this.cartService = cartService;
     }
 
     @ModelAttribute(Constants.CART)
@@ -32,8 +34,10 @@ public class CartController
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @ModelAttribute(value = Constants.CART)HashMap<Integer, CartItem> cart, Locale locale)
     {
-        ArrayList<CartItemDisplay> cartItemDisplays = CartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
+        ArrayList<CartItemDisplay> cartItemDisplays = cartService.getCartItemDisplayArray(cart,locale.getLanguage(), wigDAO);
         model.addAttribute("cartItems", cartItemDisplays);
+        model.addAttribute("totalPrice", cartService.getTotalPrice(cartItemDisplays));
+        model.addAttribute("totalQuantity", cartService.getTotalQuantity(cartItemDisplays));
         return "integrated:cart";
     }
 

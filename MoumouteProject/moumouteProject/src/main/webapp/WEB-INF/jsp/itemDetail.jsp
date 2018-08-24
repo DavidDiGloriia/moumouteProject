@@ -27,17 +27,26 @@
                     <div class="col-md-8 px-3">
                         <div class="card-block px-3">
                             <h4 class="card-title">${item.wigName}</h4>
-
                             <p class="card-text">${item.description}</p>
-                            <p class="card-text money"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€</p>
-
+                            <div class="money">
+                                <c:choose>
+                                    <c:when test="${not empty item.promotion}">
+                                        <s>${item.price}€</s>
+                                        ${item.reductedPrice}€
+                                        ( -<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.promotion.percRed}"/>%)
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${item.price}€€
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
                             <form:form id="form"
                                        method="POST"
                                        action="/moumoute/cart/addItemToCart"
                                        modelAttribute="itemToAdd"
                                        style="width:100%">
 
-                                <form:input path="quantity" id="search_param"   type="number" />
+                                <form:input path="quantity" id="search_param" min="1" type="number" value="1"/>
                                 <form:input path="itemId" id="search_param" value="${item.id}"  type="hidden" />
                                 <form:button class="btn btn-secondary"> <spring:message code="add_to_cart"/></span> <span class="glyphicon glyphicon-shopping-cart" style="border-left:3px"></form:button>
                             </form:form>

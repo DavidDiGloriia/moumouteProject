@@ -35,16 +35,14 @@
                           <br>
 
                         <div class="money">
-
                             <c:choose>
                                 <c:when test="${not empty item.promotion}">
-                                    <s><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€</s>
-                                    <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${(item.EVATPrice*(1+(item.VATRate/100)))*(1- (item.promotion.percRed/100))}"/>€
+                                    <s>${item.price}€</s>
+                                    ${item.reductedPrice}€
                                     ( -<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.promotion.percRed}"/>%)
                                 </c:when>
                                 <c:otherwise>
-                                    <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€
-
+                                    ${item.price}€€
                                 </c:otherwise>
                             </c:choose>
                        </div>

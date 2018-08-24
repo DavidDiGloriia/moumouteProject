@@ -12,8 +12,6 @@
                     <p>Votre cadi est vide, commandez quelque chose <a href="<spring:url value="/home"/>">ici</a>.</p>
                 </c:when>
                 <c:otherwise>
-
-                    <c:set var="totalPrice" value="0"/>
                     <table class="table">
                         <thead class="thead-dark">
 
@@ -29,22 +27,18 @@
                                 <td>${item.getItemName()}</td>
                                 <td><a href="<spring:url value="/items?itemId=${item.itemId}"/>"> <img class="card-img-top" width="70" height="40" src="${item.getPictureLink()}" alt=""></a></td>
                                 <td>${item.getQuantity()}</td>
-                                <td>${item.getItemPrice()}</td>
-                                <td>${item.getItemPrice() * item.getQuantity()}</td>
-                                <td>
-                                   <a href="<spring:url value="/cart/deleteItemFromCart?itemId=${item.itemId}"/>"><button class="btn btn-secondary">Supprimer</button></a>
-                                </td>
+                                <td>${item.getItemPrice()}€</td>
+                                <td>${item.getItemPrice() * item.getQuantity()}€</td>
+                                <td><a href="<spring:url value="/cart/deleteItemFromCart?itemId=${item.itemId}"/>"><button class="btn btn-secondary">Supprimer</button></a></td>
                             </tr>
-
-                            <c:set var="totalPrice" value="${totalPrice + ( item.getItemPrice() * item.getQuantity() )}"/>
-
                         </c:forEach>
                         <tr>
-                            <td></td>
-                            <td></td>
                             <td><strong><spring:message code="cart.total"/></strong></td>
-                            <td><strong>${totalPrice}</strong></td>
+                            <td><strong>${totalQuantity}</strong></td>
                             <td></td>
+                            <td></td>
+                            <td><strong>${totalPrice}€</strong></td>
+
                         </tr>
                     </table>
                     <a href="<spring:url value="/payment"/>"><button class="btn btn-secondary">Payer avec paypal</button></a>
