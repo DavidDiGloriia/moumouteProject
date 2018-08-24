@@ -11,7 +11,7 @@
          <div class="col-lg-12">
              <c:choose>
                 <c:when test="${cartSize  == 0}">
-                    <p>Votre cadi est vide, commandez quelque chose <a href="<spring:url value="/home"/>">ici</a>.</p>
+                    <p><spring:message code="empty_cart"></spring:message><a href="<spring:url value="/home"/>">ici</a>.</p>
                 </c:when>
                 <c:otherwise>
 
@@ -31,7 +31,6 @@
                             </c:when>
                             <c:otherwise>
                                 <fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.EVATPrice*(1+(item.VATRate/100))}"/>€
-
                             </c:otherwise>
                         </c:choose>
 
@@ -51,7 +50,7 @@
 
                                     <form:input path="idItem" value="${item.itemId}"  type="hidden" ></form:input>
                                     <form:input path="newQuantity" value="${item.quantity}"  type="number"  min="1" max="10" ></form:input>
-                                    <form:button class="btn btn-secondary">Mettre à jour</form:button>
+                                    <form:button class="btn btn-secondary"><spring:message code="update"></spring:message></form:button>
                                 </form:form>
 
 
@@ -79,7 +78,7 @@
                             <td></td>
                         </tr>
                     </table>
-                    <a href="<spring:url value="/payment"/>"><button class="btn btn-secondary">Payer avec paypal</button></a>
+                    <a href="<spring:url value="/payment"/>"><button class="btn btn-secondary"><spring:message code="pay_with_paypal"/></button></a>
                 </c:otherwise>
              </c:choose>
          </div>
