@@ -65,7 +65,7 @@
                                 </c:forEach>
 
                                 <li class="divider dropdown-item"></li>
-                                <li class="dropdown-item"><a href="#0">Anything</a>
+                                <li class="dropdown-item"><a href="#all">Anything</a>
                             </ul>
                         </div>
 
@@ -119,6 +119,13 @@
                                 <i class="fa fa-shopping-cart"  style="color:white"></i>
                                 <spring:message code="cart"/>
                                 <span class="badge badge-info">${cartSize}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<spring:url value="/about"/>">
+                                <i class="fa fa-info-circle"  style="color:white"></i>
+                                <spring:message code="about"/>
                             </a>
                         </li>
 

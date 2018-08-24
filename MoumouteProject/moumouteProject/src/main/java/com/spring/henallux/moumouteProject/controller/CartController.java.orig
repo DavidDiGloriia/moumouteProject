@@ -51,6 +51,7 @@ public class CartController
         cart.put(itemToAdd.getItemId(), itemToAdd);
         return "redirect:/home";
     }
+<<<<<<< HEAD
 
 
     @RequestMapping(value="/updateItemQuantity",method=RequestMethod.POST)
@@ -60,4 +61,8 @@ public class CartController
         return "redirect:/home";
 
     }
+
+
+=======
+>>>>>>> 037ff7cabfe22b75e3fca4f229de1c3e28e38fd8
 }

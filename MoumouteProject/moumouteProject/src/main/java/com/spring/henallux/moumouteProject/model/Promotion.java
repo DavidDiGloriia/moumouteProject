@@ -6,28 +6,16 @@ import java.util.Date;
 
 public class Promotion
 {
-    private Integer id;
     private Date endDate;
     private Date startDate;
     private double percRed;
-    private WigEntity wig;
 
     public Promotion() {}
 
-    public Promotion(Integer id, Date endDate, Date startDate, double percRed, WigEntity wig) {
-        this.id = id;
+    public Promotion(Date endDate, Date startDate, double percRed) {
         this.endDate = endDate;
         this.startDate = startDate;
         this.percRed = percRed;
-        this.wig = wig;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Date getEndDate() {
@@ -52,13 +40,5 @@ public class Promotion
 
     public void setPercRed(double percRed) {
         this.percRed = percRed;
-    }
-
-    public WigEntity getWig() {
-        return wig;
-    }
-
-    public void setWig(WigEntity wig) {
-        this.wig = wig;
     }
 }

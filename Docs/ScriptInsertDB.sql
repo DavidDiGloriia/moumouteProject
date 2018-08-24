@@ -48,15 +48,7 @@ INSERT INTO Wig     VALUES(9,14,21,"https://i.imgur.com/zQS3OzZ.jpg",2);
 INSERT INTO WigTrad VALUES(17,"FR",9,"Sia noir et blanc","Perruque de Sia pour déguisements");
 INSERT INTO WigTrad VALUES(18,"EN",9,"Sia black and white","Sia's Wig for disguise");
 
-INSERT INTO Promotion VALUES(1,'2018-12-31','2018-01-01',25.00,9);
-INSERT INTO Promotion VALUES(2,'2018-02-28','2018-01-01',33.33,8);
-
-
-Create table Promotion(
-	id int primary key, 
-	endDate    DATETIME(6) not null,
-	startDate  DATETIME(6) not null,
-	percRed  DECIMAL(5,2) not null ,
-	wigId int not null,
-	foreign key(wigId) references Wig(id)  	
-);
+INSERT INTO Promotion VALUES(1,'2018-01-01','2018-12-31',25.00,1);
+INSERT INTO Promotion VALUES(2,'2018-01-01','2018-02-28',30.00,2);
+INSERT INTO Promotion VALUES(3,'2019-01-01','2019-02-01',90.00,8);
+INSERT INTO Promotion VALUES(4,'2018-08-01','2018-08-31',50.00,9);

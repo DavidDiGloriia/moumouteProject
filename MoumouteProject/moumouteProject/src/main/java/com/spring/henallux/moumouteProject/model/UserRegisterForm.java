@@ -42,6 +42,9 @@ public class UserRegisterForm
     @NotEmpty
     private String country;
 
+    @Pattern(regexp="(^$|0[0-9]{9})")
+    private String phoneNumber;
+
     public UserRegisterForm() {}
 
     public String getUsername() {
@@ -122,5 +125,13 @@ public class UserRegisterForm
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 public class SaleEntity
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -22,6 +23,13 @@ public class SaleEntity
 
     @OneToMany(mappedBy = "sale", fetch = FetchType.LAZY)
     private Collection<SaleLineEntity> saleLines;
+
+    public SaleEntity(){}
+
+    public SaleEntity(Date saleDate, UserEntity user) {
+        this.saleDate = saleDate;
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

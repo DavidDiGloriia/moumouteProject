@@ -77,6 +77,11 @@
                     <form:errors path="country"/>
                 </div>
 
+                <spring:message code="register.phone_number" var="phoneNumberMsg"/>
+                <form:input path="phoneNumber" placeholder="${phoneNumberMsg} (*)"/>
+                <div class="display-error">
+                    <form:errors path="phoneNumber"/>
+                </div>
 
                 <form:button class="btn"><spring:message code="register.register_btn"/></form:button>
                 <a class="login" href="<spring:url value="/login"/>"><spring:message code="register.login"/></a>

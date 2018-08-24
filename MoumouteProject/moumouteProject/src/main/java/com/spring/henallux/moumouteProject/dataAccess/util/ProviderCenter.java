@@ -1,10 +1,7 @@
 package com.spring.henallux.moumouteProject.dataAccess.util;
 
 import com.spring.henallux.moumouteProject.dataAccess.entity.*;
-import com.spring.henallux.moumouteProject.model.Language;
-import com.spring.henallux.moumouteProject.model.User;
-import com.spring.henallux.moumouteProject.model.UserRegisterForm;
-import com.spring.henallux.moumouteProject.model.Wig;
+import com.spring.henallux.moumouteProject.model.*;
 import com.sun.istack.internal.Nullable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -24,8 +21,7 @@ public class ProviderCenter
         wigModel.setCategoryId(wigEntity.getCategory().getId());
         if(promotionEntity != null)
         {
-            wigModel.setPercRed(promotionEntity.getPercRed());
-            wigModel.setEndDateRed(promotionEntity.getEndDate());
+            wigModel.setPromotion(this.PromotionEntityToPromotionModel(promotionEntity));
         }
         return wigModel;
     }
@@ -52,7 +48,16 @@ public class ProviderCenter
         userEntity.setPostalCode(Integer.parseInt(userRegisterForm.getPostalCode()));
         userEntity.setCity(userRegisterForm.getCity());
         userEntity.setCountry(userRegisterForm.getCountry());
+        userEntity.setPhoneNumber(userRegisterForm.getPhoneNumber());
         return userEntity;
+    }
 
+    public Promotion PromotionEntityToPromotionModel(PromotionEntity promotionEntity)
+    {
+        return new Promotion(
+                promotionEntity.getStartDate(),
+                promotionEntity.getEndDate(),
+                promotionEntity.getPercRed()
+        );
     }
 }

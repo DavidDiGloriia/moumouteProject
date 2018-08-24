@@ -8,17 +8,15 @@ import javax.persistence.*;
 public class SaleLineEntity
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-
-    @Column(name = "linenumber")
-    private int lineNumber;
 
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "unitpriceevat")
-    private double unitPriceEVAT;
+    @Column(name = "unitprice")
+    private double unitPrice;
 
     @JoinColumn(name = "saleid", referencedColumnName = "id")
     @ManyToOne
@@ -36,14 +34,6 @@ public class SaleLineEntity
         this.id = id;
     }
 
-    public int getLineNumber() {
-        return lineNumber;
-    }
-
-    public void setLineNumber(int lineNumber) {
-        this.lineNumber = lineNumber;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -52,12 +42,12 @@ public class SaleLineEntity
         this.quantity = quantity;
     }
 
-    public double getUnitPriceEVAT() {
-        return unitPriceEVAT;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setUnitPriceEVAT(double unitPriceEVAT) {
-        this.unitPriceEVAT = unitPriceEVAT;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public SaleEntity getSale() {

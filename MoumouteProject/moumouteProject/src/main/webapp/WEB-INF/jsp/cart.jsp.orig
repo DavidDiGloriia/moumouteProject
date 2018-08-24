@@ -19,9 +19,10 @@
                     <table class="table">
                         <thead class="thead-dark">
 
-                            <th><spring:message code="cart.name"/></th>
-                            <th style="width:5%"></th>
-                            <th><spring:message code="cart.quantity"/> </th>
+<<<<<<< HEAD
+                        <th><spring:message code="cart.name"/></th>
+                        <th style="width:5%"></th>
+                        <th><spring:message code="cart.quantity"/> </th>
 
                         <c:choose>
                             <c:when test="${item.percRed > 0 }">
@@ -35,14 +36,14 @@
                             </c:otherwise>
                         </c:choose>
 
-                            <th><spring:message code="cart.unit_price"/> </th>
-                            <th><spring:message code="cart.total_item_price"/></th>
-                            <th></th>
-                        </thead>
-                        <c:forEach items="${cartItems}" var="item">
-                            <tr>
-                                <td>${item.getItemName()}</td>
-                                <td><a href="<spring:url value="/items?itemId=${item.itemId}"/>"> <img class="card-img-top" width="70" height="40" src="${item.getPictureLink()}" alt=""></a></td>
+                        <th><spring:message code="cart.unit_price"/> </th>
+                        <th><spring:message code="cart.total_item_price"/></th>
+                        <th></th>
+                    </thead>
+                    <c:forEach items="${cartItems}" var="item">
+                        <tr>
+                            <td>${item.getItemName()}</td>
+                            <td><a href="<spring:url value="/items?itemId=${item.itemId}"/>"> <img class="card-img-top" width="70" height="40" src="${item.getPictureLink()}" alt=""></a></td>
                             <td>
                                 <form:form id="form"
                                            method="POST"
@@ -59,14 +60,34 @@
 
 
                             </td>
-                                <td>${item.getItemPrice()}</td>
+                            <td>${item.getItemPrice()}</td>
                             <td>
                                     ${item.getItemPrice() * item.getQuantity()}
                             </td>
+                            <td>
+                               <a href="<spring:url value="/cart/deleteItemFromCart?itemId=${item.itemId}"/>"><button class="btn btn-secondary">Supprimer</button></a>
+                            </td>
+                        </tr>
+=======
+                            <th><spring:message code="cart.name"/></th>
+                            <th style="width:5%"></th>
+                            <th><spring:message code="cart.quantity"/> </th>
+                            <th><spring:message code="cart.unit_price"/> </th>
+                            <th><spring:message code="cart.total_item_price"/></th>
+                            <th></th>
+                        </thead>
+                        <c:forEach items="${cartItems}" var="item">
+                            <tr>
+                                <td>${item.getItemName()}</td>
+                                <td><a href="<spring:url value="/items?itemId=${item.itemId}"/>"> <img class="card-img-top" width="70" height="40" src="${item.getPictureLink()}" alt=""></a></td>
+                                <td>${item.getQuantity()}</td>
+                                <td>${item.getItemPrice()}</td>
+                                <td>${item.getItemPrice() * item.getQuantity()}</td>
                                 <td>
                                    <a href="<spring:url value="/cart/deleteItemFromCart?itemId=${item.itemId}"/>"><button class="btn btn-secondary">Supprimer</button></a>
                                 </td>
                             </tr>
+>>>>>>> 037ff7cabfe22b75e3fca4f229de1c3e28e38fd8
 
                             <c:set var="totalPrice" value="${totalPrice + ( item.getItemPrice() * item.getQuantity() )}"/>
 

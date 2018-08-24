@@ -11,12 +11,7 @@ public class Wig
     private String wigName;
     private String description;
     private int categoryId;
-    private double percRed;
-    private Date   endDateRed;
-
-
-
-
+    private Promotion promotion;
 
 
     public Wig()
@@ -88,20 +83,11 @@ public class Wig
         this.categoryId = categoryId;
     }
 
-    public double getPercRed() {
-        return percRed;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
-    public void setPercRed(double percRed) {
-        this.percRed = percRed;
-    }
-
-    public Date getEndDateRed() {
-        return endDateRed;
-    }
-
-    public void setEndDateRed(Date endDateRed) {
-        this.endDateRed = endDateRed;
-
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 }
