@@ -28,7 +28,24 @@ public class ResearchController {
     @RequestMapping(method = RequestMethod.GET)
     public String getFormData(Model model, @ModelAttribute(value="itemToSearch")SearchWigForm form,Locale locale)
     {
-        model.addAttribute("itemsList", wigDAO.getAllWigFromCategoryAndName(form.getCategory(), locale.getLanguage(), form.getWigName()));
-        return "integrated:itemsList";
+        System.out.print(isCategoryNumber(form.getCategory()));
+        if(form.getCategory() != null && (form.getCategory().equals("all") || isCategoryNumber(form.getCategory()))) {
+            if(form.getWigName() == null) {
+                form.setWigName("");
+            }
+            model.addAttribute("itemsList", wigDAO.getAllWigFromCategoryAndName(form.getCategory(), locale.getLanguage(), form.getWigName()));
+            return "integrated:itemsList";
+        } else {
+            return "redirect:/home";
+        }
+    }
+
+    private boolean isCategoryNumber(String category) {
+        try {
+            Integer.parseInt(category);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }

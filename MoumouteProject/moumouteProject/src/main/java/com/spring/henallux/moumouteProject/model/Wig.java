@@ -1,7 +1,5 @@
 package com.spring.henallux.moumouteProject.model;
 
-import java.util.Date;
-
 public class Wig
 {
     private int id;

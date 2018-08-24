@@ -28,13 +28,15 @@ public class ItemController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String home(Model model, @RequestParam(value="itemId")int idItem, Locale locale)
+    public String home(Model model, @RequestParam(value="itemId")Integer idItem, Locale locale)
     {
-        model.addAttribute("item",wigDAO.getWigById(idItem,locale.getLanguage()));
-        model.addAttribute("itemToAdd", new CartItem());
-
-        return "integrated:itemDetail";
+        System.out.print(idItem);
+        if(idItem == null) {
+            return "redirect:/home";
+        } else {
+            model.addAttribute("item",wigDAO.getWigById(idItem,locale.getLanguage()));
+            model.addAttribute("itemToAdd", new CartItem());
+            return "integrated:itemDetail";
+        }
     }
-
-
 }

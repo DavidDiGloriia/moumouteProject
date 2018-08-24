@@ -15,7 +15,6 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
         <title>${title}</title>
-
         <spring:url var="langFr" value="">
             <spring:param name="lang" value="fr"/>
         </spring:url>
@@ -69,8 +68,8 @@
                             </ul>
                         </div>
 
-                        <form:input path="category" id="search_param" value="all"  type="hidden" ></form:input>
-                        <form:input path="wigName" name="x" placeholder="Search term..." cssClass="form-control" ></form:input><span class="input-group-btn"></span>
+                        <form:input path="category" id="search_param" value="all"  type="hidden" />
+                        <form:input path="wigName" name="x" placeholder="Search term..." cssClass="form-control" /><span class="input-group-btn"></span>
                         <form:button class="btn btn-secondary"><span class="glyphicon glyphicon-search"></span></form:button>
 
                     </div>
@@ -134,8 +133,8 @@
                                 <spring:message code="flagLanguage"/>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="${langEn}"><span class="flag-icon flag-icon-gb"></span> English (UK)</a>
-                                <a class="dropdown-item" href="${langFr}"><span class="flag-icon flag-icon-fr"></span> Français</a>
+                                <a class="dropdown-item" href="${langEn}"><span class="flag-icon flag-icon-gb"></span> <spring:message code="lang_en"/> </a>
+                                <a class="dropdown-item" href="${langFr}"><span class="flag-icon flag-icon-fr"></span> <spring:message code="lang_fr"/> </a>
                             </div>
                         </li>
                     </ul>
