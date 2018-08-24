@@ -35,10 +35,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-
                 <div class="row">
-
-                   <di <h4>En promotion</h4>
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">

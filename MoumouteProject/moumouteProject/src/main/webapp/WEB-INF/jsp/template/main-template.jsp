@@ -55,7 +55,7 @@
 
                     <div class="input-group">
                         <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> <span id="search_concept">Filter by</span>  <span class="caret"></span>
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> <span id="search_concept">  <spring:message code="filter_by"/></span>  <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
 
@@ -64,12 +64,13 @@
                                 </c:forEach>
 
                                 <li class="divider dropdown-item"></li>
-                                <li class="dropdown-item"><a href="#all">Anything</a>
+                                <li class="dropdown-item"><a href="#all">  <spring:message code="all"/></a>
                             </ul>
                         </div>
 
                         <form:input path="category" id="search_param" value="all"  type="hidden" />
-                        <form:input path="wigName" name="x" placeholder="Search term..." cssClass="form-control" /><span class="input-group-btn"></span>
+                        <spring:message code="search_term" var="search_term"/>
+                        <form:input path="wigName" name="x" placeholder="${search_term}" cssClass="form-control" ></form:input><span class="input-group-btn"></span>
                         <form:button class="btn btn-secondary"><span class="glyphicon glyphicon-search"></span></form:button>
 
                     </div>
